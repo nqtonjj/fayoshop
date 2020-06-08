@@ -69,39 +69,39 @@
     50%  { background-position: right; }
     100% { background-position: right; }
   }
-  .image {
+  .cart_image {
       width: 112px;
       height: 72px;
   }
-  .image img{
+  .cart_image img{
       width: 100%;
       height: 100%;
   }
    
   /*Let’s add some basic style to  product name and description.
-  */.description {
+  */.cart_description {
     margin: 0px 55px 0px 55px;
   }
    
-  .description span {
+  .cart_description span {
     display: block;
     font-size: 14px;
     color: #43484D;
     font-weight: 400;
   }
    
-  .description span:first-child {
+  .cart_description span:first-child {
     margin-bottom: 5px;
   }
-  .description span:last-child {
+  .cart_description span:last-child {
     font-weight: 300;
     margin-top: 8px;
     color: #86939E;
   }
-  .quantity {
+  .cart_quantity {
     padding-top: 17px;
   }
-  .quantity input {
+  .cart_quantity input {
     -webkit-appearance: none;
     border: none;
     text-align: center;
@@ -154,7 +154,7 @@
   input:focus {
     outline:0;
   }
-  .total-price {
+  .cart_total-price {
     width: 20%;
     padding-top: 12px;
     text-align: center;
@@ -197,17 +197,17 @@
       height: auto;
       overflow: hidden;
     }
-    .item {
+    .cart_item {
       height: auto;
       flex-wrap: wrap;
       justify-content: center;
     }
-    .image img {
+    .cart_image img {
       width: 50%;
     }
-    .image,
-    .quantity,
-    .description {
+    .cart_image,
+    .cart_quantity,
+    .cart_description {
       width: 100%;
       text-align: center;
       margin: 6px 0;
