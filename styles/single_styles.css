@@ -934,7 +934,8 @@ section
 }
 .review_submit_btn
 {
-	width: 170px !important;
+	width: 200px !important;
+	height: 50px !important;
 	border: none;
 	color: #FFFFFF;
 	text-transform: uppercase;
@@ -1357,9 +1358,9 @@ textarea:hover
     flex-direction: row;
   }
   
-  .item:nth-child(1){
+  /* .item:nth-child(1){
       margin-right: 20px;
-  }
+  } */
   .item:nth-child(3) {
     border-top:  1px solid #E1E8EE;
     border-bottom:  1px solid #E1E8EE;
@@ -1604,6 +1605,14 @@ textarea:hover
 		margin-left: 0px !important;
 	}
 	.single_btn-review button[class*=btn]{
-		width: 200px;
-		height: 200px;
+		width: 250px;
+		height: 250px;
+	}
+	.checkout-item{
+		padding: 10px 0px;
+
+	}
+	.card-text{
+		width: 100%;
+		border-top: 1px solid #E1E8EE;
 	}
