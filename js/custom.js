@@ -54,7 +54,6 @@ jQuery(document).ready(function($)
 	initFixProductBorder();
 	initIsotopeFiltering();
 	initSlider();
-
 	/* 
 
 	2. Set Header
@@ -390,7 +389,6 @@ jQuery(document).ready(function($)
 		    });
     	}
     }
-
     /* 
 
 	8. Init Slider
