@@ -404,7 +404,8 @@ jQuery(document).ready(function($)
     		slider1.owlCarousel({
     			loop:false,
     			dots:false,
-    			nav:false,
+				nav:false,
+				margin: 5,
     			responsive:
 				{
 					0:{items:1},
