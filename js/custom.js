@@ -25,7 +25,7 @@ jQuery(document).ready(function($)
 	1. Vars and Inits
 
 	*/
-
+	var checkout = $('.cart-checkout');
 	var header = $('.header');
 	var topNav = $('.top_nav')
 	var mainSlider = $('.main_slider');
@@ -54,6 +54,10 @@ jQuery(document).ready(function($)
 	initFixProductBorder();
 	initIsotopeFiltering();
 	initSlider();
+	scrollFuntion();
+	// cart
+	function scrollFuntion(){
+	}
 	/* 
 
 	2. Set Header

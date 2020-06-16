@@ -1149,6 +1149,13 @@ textarea:hover
 }
 
 /* cart */
+.cart-checkout{
+	position: sticky;
+	top: 0;
+	bottom: 0;
+	height: 50vh;
+	overflow-y: auto;
+}
 .shopping-cart {
     height: 423px;
     background: #FFFFFF;
@@ -1158,13 +1165,9 @@ textarea:hover
     flex-direction: column;
   }
   .list-group__bg{
-      background-color: #E1E8EE;
-      cursor: pointer;
-  }
-  .list-group__bg-payment{
-      background-color: #43484D;
-      color: #FFFFFF;
-      cursor: pointer;
+      background-color: tomato;
+	  cursor: pointer;
+	  color: white;
   }
   .title {
     height: 60px;
@@ -1263,7 +1266,8 @@ textarea:hover
       background-color: #82E0AA !important;
   }
   .cart-update:hover button[class*=btn]{
-    color: white !important;
+	color: white !important;
+	background-color: tomato !important;
   }
   .cart-update{
       width: 100%;
@@ -1426,9 +1430,13 @@ textarea:hover
 	font-size: 35px;
 	cursor: pointer;
 	}
+	.single__nav-custom{
+		font-size: 18px;
+	}
 	.nav-pills .single__nav-custom.active{
 		color: white;
 		background-color: #1e1e27;
+		font-size: 20px;
 	}
 	.nav-pills a{
 		color: black;
@@ -1584,12 +1592,6 @@ textarea:hover
 		font-size: 14px;
 		font-weight: 400;
 	}
-	.product-grid .price span{
-		color: #333;
-		text-decoration: line-through;
-		margin-right: 3px;
-	}
-	.product-grid .price.discount{ color: var(--main-color); }
 	@media only screen and (max-width:990px){
 		.product-grid{ margin-bottom: 30px; }
 	}
