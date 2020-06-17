@@ -132,8 +132,6 @@
   .user__update button[class*=btn]{
     width: 100%;
     height: 100%;
-    background-color: seagreen !important;
-
 }
   button[class*=btn] {
     width: 30px;
