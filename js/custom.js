@@ -1,124 +1,51 @@
-/* JS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Vars and Inits
-2. Set Header
-3. Init Menu
-4. Init Timer
-5. Init Favorite
-6. Init Fix Product Border
-7. Init Isotope Filtering
-8. Init Slider
-
-
-******************************/
-
 jQuery(document).ready(function($)
 {
 	"use strict";
-
-	/* 
-
-	1. Vars and Inits
-
-	*/
-	var checkout = $('.cart-checkout');
-	var header = $('.header');
-	var topNav = $('.top_nav')
-	var mainSlider = $('.main_slider');
-	var hamburger = $('.hamburger_container');
-	var menu = $('.hamburger_menu');
-	var menuActive = false;
-	var hamburgerClose = $('.hamburger_close');
-	var fsOverlay = $('.fs_menu_overlay');
-
-	setHeader();
-
 	$(window).on('resize', function()
 	{
 		initFixProductBorder();
-		setHeader();
 	});
 
 	$(document).on('scroll', function()
 	{
-		setHeader();
 	});
-
-	initMenu();
-	initTimer();
-	initFavorite();
 	initFixProductBorder();
-	initIsotopeFiltering();
 	initSlider();
-	scrollFuntion();
+	// scrollFuntion();
+	binding();
 	// cart
-	function scrollFuntion(){
+	function binding(){
+		const createState = (stateObj) => {
+			return new Proxy(stateObj, {
+			  set(target, property, value){
+				target[property]= value;
+				render();
+				return true;
+			  }
+			});
+		  };
+		  const state = createState({
+			name: '',
+			address:'',
+			sdt:''
+		  });
+		  const listeners = document.querySelectorAll('[data-model]');
+		  listeners.forEach(element =>{
+			const name = element.dataset.model;
+			element.addEventListener('keyup',(event)=>{
+			  state[name] = element.value;
+			});
+		  });
+		  const render = () =>{
+			const bindings = Array.from(document.querySelectorAll('[data-binding]')).map(
+			  e => e.dataset.binding
+			);
+			bindings.forEach((binding)=>{
+			  document.querySelector(`[data-binding=${binding}]`).innerHTML = state[binding];
+			  document.querySelector(`[data-model=${binding}]`).value = state[binding];
+			})
+		  }
 	}
-	/* 
-
-
-	/* 
-
-	3. Init Menu
-
-	*/
-
-	function openMenu()
-	{
-		menu.addClass('active');
-		// menu.css('right', "0");
-		fsOverlay.css('pointer-events', "auto");
-		menuActive = true;
-	}
-
-	function closeMenu()
-	{
-		menu.removeClass('active');
-		fsOverlay.css('pointer-events', "none");
-		menuActive = false;
-	}
-    /* 
-
-	5. Init Favorite
-
-	*/
-
-    function initFavorite()
-    {
-    	if($('.favorite').length)
-    	{
-    		var favs = $('.favorite');
-
-    		favs.each(function()
-    		{
-    			var fav = $(this);
-    			var active = false;
-    			if(fav.hasClass('active'))
-    			{
-    				active = true;
-    			}
-
-    			fav.on('click', function()
-    			{
-    				if(active)
-    				{
-    					fav.removeClass('active');
-    					active = false;
-    				}
-    				else
-    				{
-    					fav.addClass('active');
-    					active = true;
-    				}
-    			});
-    		});
-    	}
-    }
-
     /* 
 
 	6. Init Fix Product Border
@@ -205,43 +132,6 @@ jQuery(document).ready(function($)
 					product.css('border-right', 'none');
 				}
 			}	
-    	}
-    }
-
-    /* 
-
-	7. Init Isotope Filtering
-
-	*/
-
-    function initIsotopeFiltering()
-    {
-    	if($('.grid_sorting_button').length)
-    	{
-    		$('.grid_sorting_button').click(function()
-	    	{
-	    		// putting border fix inside of setTimeout because of the transition duration
-	    		setTimeout(function()
-		        {
-		        	initFixProductBorder();
-		        },500);
-
-		        $('.grid_sorting_button.active').removeClass('active');
-		        $(this).addClass('active');
-		 
-		        var selector = $(this).attr('data-filter');
-		        $('.product-grid').isotope({
-		            filter: selector,
-		            animationOptions: {
-		                duration: 750,
-		                easing: 'linear',
-		                queue: false
-		            }
-		        });
-
-		        
-		         return false;
-		    });
     	}
     }
     /* 
