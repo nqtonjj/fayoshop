@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
+</head>
+
+<body>
+    <div class="super_container">
+        <!-- main -->
+        <div class="container product_section_container">
+            <div class="row">
+                <div class="col-12 product_section clearfix">
+                    <!-- Breadcrumbs -->
+                    <div class="breadcrumbs d-flex flex-row align-items-center">
+                        <ul>
+                            <li><a href="index.html">Trang chủ</a></li>
+                            <li class="active"><a href="index.html"><i class="fa fa-angle-right"
+                                        aria-hidden="true"></i>Giỏ hàng</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- cart -->
+                <div class="col-8 col-sm-12 col-lg-8">
+                    <form>
+                        <div class="shopping-cart">
+                            <!-- Title -->
+                            <div class="title">
+                                <h3> Giỏ hàng của bạn</h3>
+                            </div>
+
+                            <!-- Product #1 -->
+                            <div class="item">
+                                <div class="cart_image">
+                                    <img src="images/product_2.png" alt="" />
+                                </div>
+
+                                <div class="cart_description">
+                                    <span>Common Projects</span>
+                                    <span>x 3</span>
+                                    <span>White XL</span>
+                                </div>
+
+                                <div class="cart_quantity">
+                                    <button class="plus-btn" type="button" name="button">
+                                        <img src="plus.svg" alt="" />
+                                        <span>+</span>
+                                    </button>
+                                    <input type="number" name="name" value="1">
+                                    <button class="minus-btn" type="button" name="button">
+                                        <span>-</span>
+                                    </button>
+                                </div>
+                                <div class="cart_total-price">
+                                    <span style="text-decoration: line-through;font-size: 12px;
+                                            ">900.000đ</span> 750.000đ
+                                </div> <button type="button" class=" btn-danger btn-pad">
+                                    <span>X</span>
+                                </button>
+                            </div>
+
+                            <!-- Product #2 -->
+                            <div class="item">
+                                <div class="cart_image">
+                                    <img src="images/product_3.png" alt="" />
+                                </div>
+
+                                <div class="cart_description">
+                                    <span>Common Projects</span>
+                                    <span>x 3 </span>
+                                    <span>White</span>
+                                </div>
+                                <div class="cart_quantity">
+                                    <button class="plus-btn" type="button" name="button">
+                                        <img src="plus.svg" alt="" />
+                                        <span>+</span>
+                                    </button>
+                                    <input type="number" name="name" value="1" min="1">
+                                    <button class="minus-btn" type="button" name="button">
+                                        <span>-</span>
+                                    </button>
+                                </div>
+                                <div class="cart_total-price">
+                                    <span style="text-decoration: line-through;font-size: 12px;
+                                            ">200.000đ</span> 150.000đ
+                                </div><button type="button" class=" btn-danger btn-pad">
+                                    <span>X</span>
+                                </button>
+                            </div>
+
+                            <!-- Product #3 -->
+                            <div class="item">
+                                <div class="cart_image">
+                                    <img src="images/product_4.png" alt="" />
+                                </div>
+
+                                <div class="cart_description">
+                                    <span>Common Projects</span>
+                                    <span>x3</span>
+                                    <span>White</span>
+                                </div>
+
+                                <div class="cart_quantity">
+                                    <button class="plus-btn" type="button" name="button">
+                                        <img src="plus.svg" alt="" />
+                                        <span>+</span>
+                                    </button>
+                                    <input type="number" name="name" value="1">
+                                    <button class="minus-btn" type="button" name="button">
+                                        <span>-</span>
+                                    </button>
+                                </div>
+                                <div class="cart_total-price">
+                                    <span style="text-decoration: line-through;font-size: 12px;
+                                            ">200.000đ</span> 150.000đ
+                                </div>
+                                <button type="button" class=" btn-danger btn-pad">
+                                    <span>X</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-8">
+                                <a href="#">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i> Tiếp tục mua hàng</a> </div>
+                            <div class="col-4">
+                                <div class="cart-update">
+                                    <button class="btn-hover color-5">BUTTON</button>
+                                    <!-- <button type="button" class="btn" style="color: black;">Cập nhật
+                                        giỏ hàng</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4 col-sm-12 col-lg-4">
+                    <div class="cart-checkout" id="cart-checkout">
+                        <div class="card position-sticky">
+                            <div class="card-body">
+                                <h4 class="card-title">Đơn hàng của bạn</h4>
+                                <p class="card-text border-0" style="color: #b9b4c7;">Miễn phí vận chuyển trong thành
+                                    phố</p>
+                                    <p class="card-text border-0">
+                                        <span>Tạm tính :</span>
+                                        <span style="font-size: 18px;float: right;"> 2.000.000 đ</span>
+                                    </p>
+                                <p class="card-text">
+                                    <span style="font-size: 18px;">Tổng :</span>
+                                    <span style="color: #FF5740;font-size: 18px;float: right;"> 2.000.000 đ</span>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush text-center mt-2">
+                            <button class="btn-hover color-11">Thanh toán</button>
+                            <!-- <li class="list-group-item list-group__bg">Thanh toán</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="site-footer mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>FAYO Shop</h6>
+                        <p class="text-justify">FAYO là một thường hiệu thời trang Việt Nam dành cho giới trẻ.
+                            FAYO mang ý nghĩa You are My everything
+
+                            --
+
+                            Streetwear của giới trẻ Việt đang phát triển không ngừng và ngày càng khó tính hơn, kiểu
+                            cách hơn...
+
+                            Theo xu hướng, FAYO.vn đang có những bước chuyển mình đầy táo bạo...
+
+                        </p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>HỖ TRỢ</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">Vận Chuyển</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                            <li><a href="#">Chính sách bảo hành</a></li>
+                            <li><a href="#">Khách hàng VIP</a></li>
+                            <li><a href="#">Đối tác cung cấp</a></li>
+                            <li><a href="#">Chăm sóc khách hàng</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Thông tin về công ty</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li class="mt-4"><a href="#"><img src="images/congthuong.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <a href="#">FAYO nghĩa là Fashion Young</a>.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="linkedin" href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="styles/bootstrap4/popper.js"></script>
+    <script src="styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="plugins/easing/easing.js"></script>
+    <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>

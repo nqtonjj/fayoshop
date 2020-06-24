@@ -1,270 +1,51 @@
-/* JS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Vars and Inits
-2. Set Header
-3. Init Menu
-4. Init Timer
-5. Init Favorite
-6. Init Fix Product Border
-7. Init Isotope Filtering
-8. Init Slider
-
-
-******************************/
-
 jQuery(document).ready(function($)
 {
 	"use strict";
-
-	/* 
-
-	1. Vars and Inits
-
-	*/
-
-	var header = $('.header');
-	var topNav = $('.top_nav')
-	var mainSlider = $('.main_slider');
-	var hamburger = $('.hamburger_container');
-	var menu = $('.hamburger_menu');
-	var menuActive = false;
-	var hamburgerClose = $('.hamburger_close');
-	var fsOverlay = $('.fs_menu_overlay');
-
-	setHeader();
-
 	$(window).on('resize', function()
 	{
 		initFixProductBorder();
-		setHeader();
 	});
 
 	$(document).on('scroll', function()
 	{
-		setHeader();
 	});
-
-	initMenu();
-	initTimer();
-	initFavorite();
 	initFixProductBorder();
-	initIsotopeFiltering();
 	initSlider();
-
-	/* 
-
-	2. Set Header
-
-	*/
-
-	function setHeader()
-	{
-		if(window.innerWidth < 992)
-		{
-			if($(window).scrollTop() > 100)
-			{
-				header.css({'top':"0"});
-			}
-			else
-			{
-				header.css({'top':"0"});
-			}
-		}
-		else
-		{
-			if($(window).scrollTop() > 100)
-			{
-				header.css({'top':"-50px"});
-			}
-			else
-			{
-				header.css({'top':"0"});
-			}
-		}
-		if(window.innerWidth > 991 && menuActive)
-		{
-			closeMenu();
-		}
-	}
-
-	/* 
-
-	3. Init Menu
-
-	*/
-
-	function initMenu()
-	{
-		if(hamburger.length)
-		{
-			hamburger.on('click', function()
-			{
-				if(!menuActive)
-				{
-					openMenu();
-				}
+	// scrollFuntion();
+	binding();
+	// cart
+	function binding(){
+		const createState = (stateObj) => {
+			return new Proxy(stateObj, {
+			  set(target, property, value){
+				target[property]= value;
+				render();
+				return true;
+			  }
 			});
-		}
-
-		if(fsOverlay.length)
-		{
-			fsOverlay.on('click', function()
-			{
-				if(menuActive)
-				{
-					closeMenu();
-				}
+		  };
+		  const state = createState({
+			name: '',
+			address:'',
+			sdt:''
+		  });
+		  const listeners = document.querySelectorAll('[data-model]');
+		  listeners.forEach(element =>{
+			const name = element.dataset.model;
+			element.addEventListener('keyup',(event)=>{
+			  state[name] = element.value;
 			});
-		}
-
-		if(hamburgerClose.length)
-		{
-			hamburgerClose.on('click', function()
-			{
-				if(menuActive)
-				{
-					closeMenu();
-				}
-			});
-		}
-
-		if($('.menu_item').length)
-		{
-			var items = document.getElementsByClassName('menu_item');
-			var i;
-
-			for(i = 0; i < items.length; i++)
-			{
-				if(items[i].classList.contains("has-children"))
-				{
-					items[i].onclick = function()
-					{
-						this.classList.toggle("active");
-						var panel = this.children[1];
-					    if(panel.style.maxHeight)
-					    {
-					    	panel.style.maxHeight = null;
-					    }
-					    else
-					    {
-					    	panel.style.maxHeight = panel.scrollHeight + "px";
-					    }
-					}
-				}	
-			}
-		}
+		  });
+		  const render = () =>{
+			const bindings = Array.from(document.querySelectorAll('[data-binding]')).map(
+			  e => e.dataset.binding
+			);
+			bindings.forEach((binding)=>{
+			  document.querySelector(`[data-binding=${binding}]`).innerHTML = state[binding];
+			  document.querySelector(`[data-model=${binding}]`).value = state[binding];
+			})
+		  }
 	}
-
-	function openMenu()
-	{
-		menu.addClass('active');
-		// menu.css('right', "0");
-		fsOverlay.css('pointer-events', "auto");
-		menuActive = true;
-	}
-
-	function closeMenu()
-	{
-		menu.removeClass('active');
-		fsOverlay.css('pointer-events', "none");
-		menuActive = false;
-	}
-
-	/* 
-
-	4. Init Timer
-
-	*/
-
-	function initTimer()
-    {
-    	if($('.timer').length)
-    	{
-    		// Uncomment line below and replace date
-	    	// var target_date = new Date("Dec 7, 2017").getTime();
-
-	    	// comment lines below
-	    	var date = new Date();
-	    	date.setDate(date.getDate() + 3);
-	    	var target_date = date.getTime();
-	    	//----------------------------------------
-	 
-			// variables for time units
-			var days, hours, minutes, seconds;
-
-			var d = $('#day');
-			var h = $('#hour');
-			var m = $('#minute');
-			var s = $('#second');
-
-			setInterval(function ()
-			{
-			    // find the amount of "seconds" between now and target
-			    var current_date = new Date().getTime();
-			    var seconds_left = (target_date - current_date) / 1000;
-			 
-			    // do some time calculations
-			    days = parseInt(seconds_left / 86400);
-			    seconds_left = seconds_left % 86400;
-			     
-			    hours = parseInt(seconds_left / 3600);
-			    seconds_left = seconds_left % 3600;
-			     
-			    minutes = parseInt(seconds_left / 60);
-			    seconds = parseInt(seconds_left % 60);
-
-			    // display result
-			    d.text(days);
-			    h.text(hours);
-			    m.text(minutes);
-			    s.text(seconds); 
-			 
-			}, 1000);
-    	}	
-    }
-
-    /* 
-
-	5. Init Favorite
-
-	*/
-
-    function initFavorite()
-    {
-    	if($('.favorite').length)
-    	{
-    		var favs = $('.favorite');
-
-    		favs.each(function()
-    		{
-    			var fav = $(this);
-    			var active = false;
-    			if(fav.hasClass('active'))
-    			{
-    				active = true;
-    			}
-
-    			fav.on('click', function()
-    			{
-    				if(active)
-    				{
-    					fav.removeClass('active');
-    					active = false;
-    				}
-    				else
-    				{
-    					fav.addClass('active');
-    					active = true;
-    				}
-    			});
-    		});
-    	}
-    }
-
     /* 
 
 	6. Init Fix Product Border
@@ -353,44 +134,6 @@ jQuery(document).ready(function($)
 			}	
     	}
     }
-
-    /* 
-
-	7. Init Isotope Filtering
-
-	*/
-
-    function initIsotopeFiltering()
-    {
-    	if($('.grid_sorting_button').length)
-    	{
-    		$('.grid_sorting_button').click(function()
-	    	{
-	    		// putting border fix inside of setTimeout because of the transition duration
-	    		setTimeout(function()
-		        {
-		        	initFixProductBorder();
-		        },500);
-
-		        $('.grid_sorting_button.active').removeClass('active');
-		        $(this).addClass('active');
-		 
-		        var selector = $(this).attr('data-filter');
-		        $('.product-grid').isotope({
-		            filter: selector,
-		            animationOptions: {
-		                duration: 750,
-		                easing: 'linear',
-		                queue: false
-		            }
-		        });
-
-		        
-		         return false;
-		    });
-    	}
-    }
-
     /* 
 
 	8. Init Slider
@@ -406,7 +149,8 @@ jQuery(document).ready(function($)
     		slider1.owlCarousel({
     			loop:false,
     			dots:false,
-    			nav:false,
+				nav:false,
+				margin: 5,
     			responsive:
 				{
 					0:{items:1},
@@ -436,3 +180,37 @@ jQuery(document).ready(function($)
     	}
     }
 });
+// cart
+$('.like-btn').on('click', function() {
+	$(this).toggleClass('is-active');
+ });
+	 $('.minus-btn').on('click', function(e) {
+	 e.preventDefault();
+	 var $this = $(this);
+	 var $input = $this.closest('div').find('input');
+	 var value = parseInt($input.val());
+  
+	 if (value && 1) {
+		 value = value - 1;
+	 } else {
+		 value = 0;
+	 }
+  
+   $input.val(value);
+  
+ });
+  
+ $('.plus-btn').on('click', function(e) {
+	 e.preventDefault();
+	 var $this = $(this);
+	 var $input = $this.closest('div').find('input');
+	 var value = parseInt($input.val());
+  
+	 if (value && 100) {
+		 value = value + 1;
+	 } else {
+		 value = value + 1;
+	 }
+  
+	 $input.val(value);
+ });
