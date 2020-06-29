@@ -1,6 +1,7 @@
 jQuery(document).ready(function($)
 {
 	"use strict";
+	var height = $('#top-nav').height();
 	$(window).on('resize', function()
 	{
 		initFixProductBorder();
@@ -11,8 +12,9 @@ jQuery(document).ready(function($)
 	});
 	initFixProductBorder();
 	initSlider();
-	// scrollFuntion();
 	binding();
+	sticky();
+	initQuantity();
 	// cart
 	function binding(){
 		const createState = (stateObj) => {
@@ -45,11 +47,19 @@ jQuery(document).ready(function($)
 			  document.querySelector(`[data-model=${binding}]`).value = state[binding];
 			})
 		  }
-	}
+	};
+	function sticky(){
+		$(window).scroll(function () {
+			if($(this).scrollTop() > 50){
+				$('.site-navbar').addClass('fixed');
+				$('.site-navbar').addClass('box-shadow');
+			}else{
+				$('.site-navbar').removeClass('fixed');
+			}
+		});
+	};
     /* 
-
 	6. Init Fix Product Border
-
 	*/
 
     function initFixProductBorder()
@@ -181,6 +191,31 @@ jQuery(document).ready(function($)
     }
 });
 // cart
+function initQuantity()
+	{
+		if($('.plus').length && $('.minus').length)
+		{
+			var plus = $('.plus');
+			var minus = $('.minus');
+			var value = $('#quantity_value');
+
+			plus.on('click', function()
+			{
+				var x = parseInt(value.text());
+				value.text(x + 1);
+			});
+
+			minus.on('click', function()
+			{
+				var x = parseInt(value.text());
+				if(x > 1)
+				{
+					value.text(x - 1);
+				}
+			});
+		}
+	}
+
 $('.like-btn').on('click', function() {
 	$(this).toggleClass('is-active');
  });
