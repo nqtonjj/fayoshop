@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Contact Us</title>
+<title>Regis</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Colo Shop Template">
@@ -15,13 +15,14 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="styles/homeresponsive.css">
+<link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" href="styles/swiper.min.css">
 
 </head>
 
 <body>
-
 <div class="super_container" id="main">
 	<header>
 		<div class="top_nav" id="top_nav">
@@ -199,92 +200,86 @@
 			</div>
 		</div>
 	</header>
-<!-- main -->
-	<section class="single-banner">
-		<div class="single__banner-img">
-			<div class="single__banner-text line">
-				<p class="text-line">
-					Liên Hệ
-				</p>
-			</div>
-		</div>
-	</section>
-	<div class="container contact_container">
+	<!-- main -->
+	<div class="container">
 		<div class="row">
-			<div class="col">
-
-				<!-- Breadcrumbs -->
-
-				<div class="breadcrumbs d-flex flex-row align-items-center">
-					<ul>
-						<li><a href="index.html">Trang chủ</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Liên hệ</a></li>
-					</ul>
+			<div class="col-lg-4">
+				<div class="re-container mt-5 w-100">
+					<h4 class="text-center">
+						Đăng Nhập
+					</h4>
+					<form>
+						<div class="form-group">
+						  <label for="inputEmail">Email</label>
+						  <input type="text" class="form-control" id="inputEmail" placeholder="Nhập Email">
+						</div>
+						<div class="form-group">
+						  <label for="inputPass">Mật Khẩu</label>
+						  <input type="text" class="form-control" id="inputPass" placeholder="Nhập mật khẩu">
+						</div>
+						<button type="submit" class="btn review_submit_btn">
+							Đăng Nhập
+						  </button>					  
+						</form>
 				</div>
-
 			</div>
-		</div>
-		<!-- Contact Us -->
-
-		<div class="row">
-
-			<div class="col-lg-6 contact_col">
-			
-
-				<!-- Follow Us -->
-
-				<div class="follow_us_contents">
-					<h1>Theo dõi</h1>
-					<div class="row">
-						<div class="col-6 text-center">
-							<img src="images/Maps-Pin-Place-icon.png" alt="" style="width: 100px;height: 100px;">
-							<p class="mt-3">Địa chỉ</p>
-							<span>778/B1 Nguyễn Kiệm, Phường 3, Phú Nhuận, Hồ Chí Minh, Vietnam</span>
+			<div class="col-lg-2"></div>
+			<div class="col-lg-6">
+				<div class="re-container mt-5 w-100">
+					<h4 class="text-center">
+						Đăng Kí
+					</h4>
+					<form>
+						<div class="form-row">
+						  <div class="form-group col-md-6">
+							<label for="inputFirstname">Họ</label>
+							<input type="text" class="form-control" id="inputFirstname" placeholder="Họ">
+						  </div>
+						  <div class="form-group col-md-6">
+							<label for="inputLastname">Tên</label>
+							<input type="text" class="form-control" id="inputLastname" placeholder="Tên">
+						  </div>
 						</div>
-						<div class="col-6 text-center">
-							<img src="images/Mobiles-Tabs-Shopsy.png" alt="" style="width: 100px;height: 100px;">
-							<p class="mt-3">Số điện thoại</p>
-							<span>+84981725836i</span>
+						<div class="form-group">
+						  <label for="inputAddress">Địa chỉ</label>
+						  <input type="text" class="form-control" id="inputAddress" placeholder="778/B1 Nguyễn Kiệm, Phường 3, Phú Nhuận, Hồ Chí Minh">
 						</div>
-					</div>	
-					<ul class="social d-flex flex-row">
-						<li><a href="#" style="background-color: #3a61c9"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-						<li><a href="#" style="background-color: #41a1f6"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li><a href="#" style="background-color: #fb4343"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-						<li><a href="#" style="background-color: #8f6247"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-
-			</div>
-
-			<div class="col-lg-6 get_in_touch_col">
-				<div class="get_in_touch_contents">
-					<h1>Liên hệ với chúng tôi</h1>
-					<form action="post">
-						<div>
-							<input id="input_name" class="contact_form_input input_name input_ph" type="text" name="name" placeholder="Tên" required="required" data-error="Name is required.">
-							<input id="input_email" class="contact_form_input input_email input_ph" type="email" name="email" placeholder="Email" required="required" data-error="Valid email is required.">
-							<textarea id="input_message" class="input_ph input_message" name="message"  placeholder="Message" rows="3" required data-error="Please, write us a message."></textarea>
+						<div class="form-group">
+						  <label for="inputEmail">Email</label>
+						  <input type="email" class="form-control" id="inputEmail" placeholder="">
 						</div>
-						<div>
-							<button id="review_submit" type="submit" class="red_button message_submit_btn trans_300" value="Submit">Gửi</button>
+						<div class="form-row">
+						  <div class="form-group col-md-6">
+							<label for="inputSdt">Điện Thoại</label>
+							<input type="text" class="form-control" id="inputSdt" placeholder="+84">
+						  </div>
+						  <div class="form-group col-md-6">
+							<label for="inputGen">Giới tính</label>
+							<select id="inputGen" class="form-control">
+							  <option selected>Giới tính</option>
+							  <option>Nam</option>
+							  <option>Nữ</option>
+							  <option>Khác</option>
+							</select>
+						  </div>
 						</div>
+						<div class="form-group">
+							<label for="inputPass">Mật Khẩu</label>
+							<input type="password" class="form-control" id="inputAddress" placeholder="">
+						  </div>
+						  <div class="form-group">
+							<label for="inputVeripass">Xác Nhận Mật Khẩu</label>
+							<input type="password" class="form-control" id="inputVeripass" placeholder="">
+						  </div>
+						<button type="submit" class="btn review_submit_btn">
+							Đăng kí
+						  </button>
 					</form>
 				</div>
 			</div>
 		</div>
-		<!-- Map Container -->
-		<div class="row mt-5">
-			<div class="col">
-				<div id="google_map">
-					<div class="map_container">
-						<div id="map"></div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
-	<!-- Footer -->
+    <!-- Footer -->
 	<footer class="site-footer mt-5">
 		<div class="container">
 		  <div class="row">
@@ -364,14 +359,15 @@
 			expandImg.src = imgs.src;
 			expandImg.parentElement.style.display = "block";
 		}
-	function openNav() {
-		document.getElementById("mySidebar").style.width = "250px";
-		document.getElementById("main").style.marginRight = "250px";
-	}
-	function closeNav() {
-		document.getElementById("mySidebar").style.width = "0";
-		document.getElementById("main").style.marginRight = "0";
-	}
+		function openNav() {
+			document.getElementById("mySidebar").style.width = "250px";
+			document.getElementById("main").style.marginRight = "250px";
+		}
+
+		function closeNav() {
+			document.getElementById("mySidebar").style.width = "0";
+			document.getElementById("main").style.marginRight = "0";
+		}
 </script>
 </body>
 
