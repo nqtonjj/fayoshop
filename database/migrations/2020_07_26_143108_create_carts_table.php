@@ -20,6 +20,7 @@ class CreateCartsTable extends Migration
             $table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
             $table->boolean('status_transport')->default(false);
             $table->boolean('status_pay')->default(false);
+            $table->boolean('total')->double(0);
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </label>
                         <ul class="site-menu d-lg-block">
-                            <li class="active"><a href="#">Trang Chủ</a></li>
+                            <li class="active"><a href="/index">Trang Chủ</a></li>
                             <li class="collap">
                                 <a class="btn" data-toggle="collapse" href="#collapseExample" role="button"
                                     aria-expanded="false" aria-controls="collapseExample">
@@ -48,52 +48,43 @@
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body border-top-0 border-bottom-0">
                                         <ul>
-                                            <li>
-                                                <a href="#">Áo</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Quần</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Giầy</a>
-                                            </li>
+                                            @foreach ($cate as $item)
+                                    <li class="has-children">
+                                        <a href="#">{{$item->name}}</a>
+
+                                    </li>
+                                    @endforeach
                                         </ul>
 
                                     </div>
                                 </div>
                             </li>
                             <li class="has-children hide">
-                                <a href="shop.html">Danh Mục</a>
+                                <a href="#">Danh Mục</a>
                                 <ul class="dropdown">
+                                    @foreach ($cate as $item)
                                     <li class="has-children">
-                                        <a href="#">Áo</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Nam</a></li>
-                                            <li><a href="#">Nữ</a></li>
-                                            <li><a href="#">Thể thao</a></li>
-                                        </ul>
+                                    <a href="/products/{{$item->id}}">{{$item->name}}</a>
+
                                     </li>
-                                    <li class="has-children">
-                                        <a href="#">Quần</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Nam</a></li>
-                                            <li><a href="#">Nữ</a></li>
-                                            <li><a href="#">Thể thao</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-children">
-                                        <a href="#">Giày</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Nam</a></li>
-                                            <li><a href="#">Nữ</a></li>
-                                            <li><a href="#">Thể thao</a></li>
-                                        </ul>
-                                    </li>
+                                    @endforeach
+
                                 </ul>
                             </li>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Liên Hệ</a></li>
+                            <li class="has-children hide">
+                                <a href="#">Thương hiệu</a>
+                                <ul class="dropdown">
+                                    @foreach ($brand as $item)
+                                    <li class="has-children">
+                                    <a href="#">{{$item->name}}</a>
+
+                                    </li>
+                                    @endforeach
+
+                                </ul>
+                            </li>
+                        <li><a href="/blog">Blog</a></li>
+                            <li><a href="/contact">Liên Hệ</a></li>
                         </ul>
                     </nav>
                 </div>

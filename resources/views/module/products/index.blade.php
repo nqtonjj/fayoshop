@@ -24,6 +24,10 @@
                             <th>Size</th>
                             <th>Hot</th>
                             <th>New</th>
+                            <th>Loại</th>
+                            <th>Thương hiệu</th>
+                            <th>Mô tả</th>
+                            <th>Nội dung</th>
                             <th>Parent</th>
                             <th>Action</th>
                         </tr>
@@ -37,6 +41,10 @@
                             <th>Size</th>
                             <th>Hot</th>
                             <th>New</th>
+                            <th>Loại</th>
+                            <th>Thương hiệu</th>
+                            <th>Mô tả</th>
+                            <th>Nội dung</th>
                             <th>Parent</th>
                             <th>Action</th>
                         </tr>
@@ -52,6 +60,10 @@
                             <td>{{$item->size}}</td>
                             <td>{{$item->is_hot}}</td>
                             <td>{{$item->is_new}}</td>
+                            <th>{{$item->category_id}}</th>
+                            <th>{{$item->brand_id}}</th>
+                            <th>{{$item->description}}</th>
+                            <th>{{$item->content}}</th>
                             <th>{{$item->parent_id}}</th>
                             <td>
                                 <div class="d-flex">
@@ -64,6 +76,15 @@
                                         <button class="btn btn-warning" type="submit">
                                             <i class="fas fa-trash-restore-alt"></i>
                                         </button>
+                                    </form>
+
+                                <form class="pl-2" action="" method="post">
+                                        @csrf
+                                    <input type="hidden" name="parent_id">
+                                        <button class="btn btn-info" type="submit">
+                                        Tạo phiên bản
+                                        </button>
+
                                     </form>
                                 </div>
                             </td>

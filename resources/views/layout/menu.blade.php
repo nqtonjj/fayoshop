@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{URL::to('/admin')}}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -30,22 +30,34 @@
       <hr class="sidebar-divider">
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="admin/user">
+      <a class="nav-link" href="{{ route('users.index') }}">
           <i class="fas fa-fw fa-table"></i>
           <span>User</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="admin/category">
+        <a class="nav-link" href={{ route('category.index') }}>
           <i class="fas fa-fw fa-table"></i>
-          <span>Category</span></a>
+          <span>Danh mục</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="product">
+      <a class="nav-link" href="{{route('product.index')}}">
           <i class="fas fa-fw fa-table"></i>
-          <span>Product</span></a>
+          <span>Sản phẩm</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('images.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Hình ảnh</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Giỏ hàng</span></a>
+            </li>
 
 
       <!-- Divider -->

@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => '/', 'as' => 'api.', 'namespace' => 'API'], function () {
-    Route::resource('carts', 'CartsController');
+    Route::resource('carts', 'Cart\CartsController',  ['except' => ['create, edit', 'destroy']]);
     Route::group(['prefix' => 'order', 'namespace' => 'Cart'], function () {
         Route::get('/create_order', 'OrderController@createOrderId');
         Route::post('/add_item', 'OrderController@addOrderItem');

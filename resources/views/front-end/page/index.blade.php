@@ -168,55 +168,56 @@
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div class="tab-1">
                         <div class="swiper-wrapper">
+                            @foreach ($featured as $item)
                             <div class="swiper-slide">
                                 <div class="product-grid mt-4">
                                     <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
+                                        <a href="#">
+                                        <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
+                                        <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
                                         </a>
-                                        <span class="product-trend-label">Mới</span>
+                                        @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
+                                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                                        @endif
                                         <ul class="card_social home__card-social">
                                             <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
                                                         class="fa fa-shopping-cart"></i></a></li>
                                             <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                             </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
+                                            <li><a href="#" data-tip="Chi tiết"><i
                                                         class="fa fa-search"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <span style="text-decoration: line-through;font-size: 13px;">150.000
-                                            đ</span>
-
-                                            <span style="font-size: 16px;color: tomato;">200.000 đ</span>
+                                    <h3 class="card__sell-title">
+                                        <a href="#">{{$item->name}}</a>
+                                    </h3>
+                                    @if ($item->price != 0)
+                                        <span style="text-decoration: line-through;font-size: 13px;"> {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                                        </span>
+                                        <span style="font-size: 16px;color: tomato;">
+                                        {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                        </span>
+                                    @else
+                                     <span style="text-decoration: line-through;font-size: 13px;"> {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                                      </span>
+                                     @endif
                                     </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
 
+                                </div>
+                            </div>
                             <!-- ITEM 2 -->
-                            <div class="swiper-slide">
+                            {{-- <div class="swiper-slide">
                                 <div class="product-grid mt-4">
                                     <div class="product-image">
                                         <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
+                                            <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
+                                        <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
                                         </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <span class="product-discount-label">-20%</span>
+                                        @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
+                                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                                        @endif
                                         <ul class="card_social home__card-social">
                                             <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
                                                         class="fa fa-shopping-cart"></i></a></li>
@@ -228,348 +229,17 @@
                                         </ul>
                                     </div>
                                     <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
+                                        <h3 class="card__sell-title">
+                                            <a href="#">{{$item->name}}</a>
                                         </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
+                                        <span style="text-decoration: line-through;font-size: 13px;"> {{number_format($item->sale_price, 0, '', ',').__(' VND')}}</span>
+                                        <span style="font-size: 16px;color: tomato;">
+                                                {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                        </span>
+                                        </div>
                                 </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-
-                            <!-- ITEM3 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <span class="product-hot-label">Hot</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 4 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 5 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 5 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 6 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 7 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 8 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 9 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- item 10 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
+                            </div> --}}
+                            @endforeach
                         </div>
                         <div class="swiper-pagination dbrr"></div>
                     </div>
@@ -639,16 +309,6 @@
                                         <div class="card__price">210.000 đ</div>
                                     </div>
                                 </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
                             </div>
                             <!-- ITEM3 -->
                             <div class="swiper-slide">
@@ -675,16 +335,6 @@
                                         <div class="card__price">210.000 đ</div>
                                     </div>
                                 </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
                             </div>
                         </div>
                         <!-- Add Pagination -->
@@ -732,113 +382,6 @@
                                     </div> -->
                             </div>
 
-                            <!-- ITEM 2 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <!-- ITEM3 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
                         </div>
                         <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>

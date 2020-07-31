@@ -38,9 +38,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // if ($request->parent_id == 0 || $request->parent_id == '0') {
-        //     $request->parent_id = null;
-        // };
+
         $category = [
             'name' => $request->name,
             'priority' => $request->priority,
@@ -64,9 +62,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        // $cate = Category::findOrFail($category);
-        // echo $cate;
-        // die;
+        
     }
 
     /**

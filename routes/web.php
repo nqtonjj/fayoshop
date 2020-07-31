@@ -26,7 +26,7 @@ Route::get('contact', 'PageController@contact');
 
 Route::get('blog', 'PageController@blog');
 
-Route::get('products', 'PageController@products');
+Route::get('products/{$category}', 'PageController@products');
 
 Route::get('detail', 'PageController@detail');
 
@@ -48,8 +48,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     })->name('home');
     Route::resource('category', 'CategoryController');
 
+    Route::resource('brands', 'BrandController');
 
     Route::resource('product', 'ProductsController');
+
 
     Route::resource('users', 'UserController');
 
@@ -58,10 +60,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('images', 'ImageController', ['except' => ['create, edit']] );
 });
 
-
-
-
-// ?? sao co login day, khac ontrollc khac controller ma
 
 
 

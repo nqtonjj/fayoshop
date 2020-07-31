@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Model\Products;
+use App\Brand;
+use App\Model\Category;
+use App\Model\Custom_attributes;
 use Illuminate\Http\Request;
+
 
 class ProductsController extends Controller
 {
@@ -14,7 +18,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Products::with(['image'])->paginate(10);
+        $products = Products::with(['image', 'attributes'])->paginate(10);
         return view('module.products.index', ['products' => $products]);
     }
 
@@ -37,10 +41,29 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $brand = Brand::all();
+        $cate  = Category::all();
         $param = $request->post();
         $model = Products::create($param);
+        if ($model && $request->has('attributes')) {
+            $array = $request['attributes'];
+            $attributes = array();
+            foreach (array_keys($array) as $fieldKey) {
+                foreach ($array[$fieldKey] as $key=>$value) {
+                    $attributes[$key][$fieldKey] = $value;
+                }
+            }
 
-        return redirect()->back();
+            foreach ($attributes as $key => $value) {
+                Custom_attributes::create([
+                    'products_id' => $model['id'],
+                    'label' => $value['label'],
+                    'value' => $value['value'],
+                    'price' => $value['price'],
+                ]);
+            }
+        }
+        return redirect()->back()->with('cate', $cate)->with('brand', $brand) ;
     }
 
     /**

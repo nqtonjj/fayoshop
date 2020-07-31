@@ -1,5 +1,5 @@
 @extends('front-end.master')
-@section ('title' , 'Tất cả sản phẩm')
+@section ('title' , 'Sản phẩm theo loại')
 
 @section('content')
 <section class="single-banner">
@@ -101,11 +101,12 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="all-tab">
                     <div class="row">
                         <div class="col-lg-4">
+                            @foreach ($cate as $item)
                             <div class="product-grid mt-4">
                                 <div class="product-image">
                                     <a href="single.html">
-                                        <img class="pic-1" src="images/single_1.jpg">
-                                        <img class="pic-2" src="images/single_2.jpg">
+                                        <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
+                                        <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
                                     </a>
                                     <span class="product-trend-label">Mới</span>
                                     <ul class="card_social">
@@ -118,130 +119,13 @@
                                     </ul>
                                 </div>
                                 <div class="product-content">
-                                    <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a></h3>
-                                    <div class="card__price">210.000 đ</div>
+                                <h3 class="card__sell-title"><a href="single.html"></a></h3>
+                                <div class="card__price"></div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-                        <div class="col-lg-4">
-                            <div class="product-grid mt-4">
-                                <div class="product-image">
-                                    <a href="single.html">
-                                        <img class="pic-1" src="images/single_1.jpg">
-                                        <img class="pic-2" src="images/single_2.jpg">
-                                    </a>
-                                    <span class="product-trend-label">Mới</span>
-                                    <ul class="card_social">
-                                        <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                        </li>
-                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a></h3>
-                                    <div class="card__price">210.000 đ</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="product-grid mt-4">
-                                <div class="product-image">
-                                    <a href="single.html">
-                                        <img class="pic-1" src="images/single_1.jpg">
-                                        <img class="pic-2" src="images/single_2.jpg">
-                                    </a>
-                                    <span class="product-trend-label">Mới</span>
-                                    <ul class="card_social">
-                                        <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                        </li>
-                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a></h3>
-                                    <span>200.000 đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="product-grid mt-4">
-                                <div class="product-image">
-                                    <a href="single.html">
-                                        <img class="pic-1" src="images/single_1.jpg">
-                                        <img class="pic-2" src="images/single_2.jpg">
-                                    </a>
-                                    <span class="product-trend-label">Mới</span>
-                                    <span class="product-hot-label">Hot</span>
-                                    <ul class="card_social">
-                                        <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                        </li>
-                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a></h3>
-                                    <span style="text-decoration: line-through;font-size: 14px;">150.000
-                                        đ</span>
-                                    <span style="font-size: 16px;color: tomato;">200.000 đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="product-grid mt-4">
-                                <div class="product-image">
-                                    <a href="single.html">
-                                        <img class="pic-1" src="images/single_1.jpg">
-                                        <img class="pic-2" src="images/single_2.jpg">
-                                    </a>
-                                    <span class="product-hot-label">Hot</span>
-                                    <ul class="card_social">
-                                        <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                        </li>
-                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a></h3>
-                                    <span>200.000 đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="product-grid mt-4">
-                                <div class="product-image">
-                                    <a href="single.html">
-                                        <img class="pic-1" src="images/single_1.jpg">
-                                        <img class="pic-2" src="images/single_2.jpg">
-                                    </a>
-                                    <span class="product-discount-label">-20%</span>
 
-                                    <ul class="card_social">
-                                        <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                        </li>
-                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a></h3>
-                                    <span>200.000 đ</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- End All -->

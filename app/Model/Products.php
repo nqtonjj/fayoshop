@@ -14,7 +14,8 @@ class Products extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price', 'sale_price', 'is_new', 'is_hot', 'image_id', 'category_id', 'size',
+        'name', 'price', 'sale_price', 'is_new', 'is_hot',
+        'image_id', 'category_id', 'size', 'description', 'content'
     ];
     public function category()
     {
@@ -24,5 +25,15 @@ class Products extends Model
     public function image()
     {
         return $this->belongsTo(Image::class);
+    }
+
+    public function brands()
+    {
+        return $this->belongTo(Brand::class);
+    }
+
+    public function attributes()
+    {
+        return $this->hasMany(Custom_attributes::class);
     }
 }
