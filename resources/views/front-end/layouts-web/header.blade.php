@@ -27,7 +27,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
                     <div class="site-logo">
-                        <a href="#" class="js-logo-clone">
+                        <a href="{{ route('trang-chu') }}" class="js-logo-clone">
                             <img src="images/logo.svg" alt="" style="width: 70px;height: 70px;">
                         </a>
                     </div>

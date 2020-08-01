@@ -15,27 +15,31 @@
                             <span class="text-success">{{ session('message') }}</span>
                             @endif
                         </div>
-                        <form class="user" method="POST" action="{{ route('sliders.update', $slider->id ) }}">
+                        <form class="user" method="POST"
+                            action="{{ route('slides.update', $slide->id ) }}">
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
 
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" placeholder="Tiêu đề"
-                                    name="title" value="{{$slider->title}}">
+                                <input type="text" class="form-control form-control-user" placeholder="Tiêu đề" name="title"
+                                    value="{{$slide->title}}">
                             </div>
 
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" placeholder="Nội dung"
-                                    name="location" value="{{$slider->location}}">
+                                    name="content" value="{{$slide->content}}">
                             </div>
                             <div class="form-group">
-                                @foreach ($slider->slides as $item)
-                                {{-- @php
-                                    echo $item->image['name'];
-                                    die;
-                                @endphp --}}
-                                <img width="200" src="{{ route('asset.show', $item->image['name']) }}" />
-                                @endforeach
+                                <label for="sliders">Danh sliders</label>
+                                <select class="form-control" id="sliders" name="slider_id">
+                                    <option value=""></option>
+                                    @foreach ($sliders as $item)
+                                    <option value="{{$item->id}}" @if ($slide->slider_id === $item->id) selected  @endif>{{$item->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                @include('module.images.model-single', ['id' => $slide->image['id'],'img' => '/asset/'.$slide->image['name']])
                             </div>
                             <input type="submit" value="Update" class="btn btn-primary btn-user btn-block">
                         </form>

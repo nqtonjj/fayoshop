@@ -2,7 +2,7 @@
 @section('title', 'Trang chủ')
 @section('content')
 <section id="banner-header" class="header-banner">
-    <div class="banner_carousel">
+    {{-- <div class="banner_carousel">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="banner">
@@ -81,6 +81,36 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination indicators"></div>
         </div>
+    </div> --}}
+
+    @if ($banner ?? false)
+    <div class="banner_carousel">
+        <div class="swiper-wrapper">
+            @foreach ($banner->slides as $item)
+                <div class="swiper-slide">
+                    <div class="banner">
+                        <img src="/asset/{{$item->image['name']}}" alt="{{$item->title}}">
+                        <div class="caption-car">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 caption">
+                                        <h1>{{ $item->title }}</h1>
+                                        <span class="caption-itr">{{ $item->content }}</span>
+                                        {{-- TODO update link --}}
+                                        <div class="caption-button">
+                                            <a href="#">MUA NGAY</a>
+                                            <a href="#">XEM THÊM</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
 </section>
 
 <section class="medel mt-5 mb-5">

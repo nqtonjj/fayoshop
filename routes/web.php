@@ -14,28 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Front-end
 
-Route::get('index', 'PageController@index')->name('trang-chu');
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', 'PageController@index')->name('trang-chu');
 
-Route::get('lien-he', 'PageController@contact')->name('contact');
+    Route::get('lien-he', 'PageController@contact')->name('contact');
 
-Route::get('blog', 'PageController@blog')->name('blog');
+    Route::get('blog', 'PageController@blog')->name('blog');
 
-Route::get('san-pham/{id?}', 'PageController@getproducts')->name('san-pham');
+    Route::get('san-pham/{id?}', 'PageController@getproducts')->name('san-pham');
 
-Route::get('detail/{id}', 'PageController@detail')->name('chi-tiet-san-pham');
+    Route::get('detail/{id}', 'PageController@detail')->name('chi-tiet-san-pham');
 
-Route::get('register', 'PageController@register');
+    Route::get('register', 'PageController@register');
 
-Route::get('login', 'PageController@login')->name('customLogin');
+    Route::get('login', 'PageController@login')->name('customLogin');
+});
 
 
-Route::resource('asset', 'ImageController', ['only'=>['show']]);
+
+Route::resource('asset', 'ImageController', ['only' => ['show']]);
 
 
 
@@ -51,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('brands', 'BrandController');
 
     Route::resource('sliders', 'SliderController');
+    Route::resource('slides', 'SlideController');
 
     Route::resource('product', 'ProductsController');
 
@@ -58,9 +62,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('customers', 'CustomerController');
 
-    Route::resource('images', 'ImageController', ['except' => ['create, edit']] );
+    Route::resource('images', 'ImageController', ['except' => ['create, edit']]);
 });
-
-
-
-

@@ -8,8 +8,13 @@ class slider extends Model
 {
     //
     protected $table = 'sliders';
+    protected  $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 'title', 'image', 'content', 'link'
+        'title', 'location', 'id'
     ];
+    public function slides()
+    {
+        return $this->hasMany(Slide::class);
+    }
 }
