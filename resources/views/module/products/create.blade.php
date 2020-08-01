@@ -41,17 +41,7 @@
 
                             <div class="form-group">
                                 <label>Tình trạng </label>
-                                {{-- chỗ này làm gì có name nó k nhận là đúng rồi
-                                    vs defau trong DB k có new hot thì auto là new, gio sua~ la` phai sua~ trong db nua a`
-                                    giờ m muốn sp vừa hot vừa new
-                                    hay sp chỉ hot hoặc chỉ new, cả hai đi, lúc khởi tạo ấy
-                                    vậy chỗ này để select là sai r nó phải là check box, hôm qua t có làm checkbox rồi mà
-                                    nó lại lấy giá trị bên thằng update nên t để lại option :v, là khởi tạo ra nó báo lỗi, mà thế thì sai sai thì phải
-                                    sản phẩm mới tạo thì làm gì có hot đuocj đúng ko
-                                    tuù m muon lam ntn thoi, vậy bỏ qua để thứ 7 gặp ông thầy, ông nói sao làm theo
-                                    giờ có cái là mô tả với nội dung nó ko ra --}}
                                 <select class="form-control">
-
                                     <option value="">Hot</option>
                                     <option value="">New</option>
 
@@ -69,7 +59,7 @@
                             <div class="form-group">
                                 <label for="child-category">Thương hiệu</label>
                                 <select class="form-control" name="brand_id">
-                                    @foreach ($brand as $item)
+                                    @foreach ($brands as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>

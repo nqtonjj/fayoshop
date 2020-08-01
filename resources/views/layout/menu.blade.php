@@ -32,7 +32,7 @@
       <li class="nav-item">
       <a class="nav-link" href="{{ route('users.index') }}">
           <i class="fas fa-fw fa-table"></i>
-          <span>User</span></a>
+          <span>Người dùng</span></a>
       </li>
 
       <li class="nav-item">
@@ -52,9 +52,13 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Hình ảnh</span></a>
         </li>
-
         <li class="nav-item">
-            <a class="nav-link" href="{{}}">
+            <a class="nav-link" href="{{route('sliders.index')}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Slider</span></a>
+            </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Giỏ hàng</span></a>
             </li>

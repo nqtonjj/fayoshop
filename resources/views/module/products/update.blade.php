@@ -61,16 +61,31 @@
                   @endforeach
               </select>
             </div>
-            {{-- r á conf phan img nua, ko ra  tại  giá trị của nó --}}
-
-            {{-- <div class="form-group">
-                <select class="form-control"  name="parent_id" id="parent_id">
-                  <option value="0">Chọn danh mục cấp 1</option>
-                  @foreach($products as $item)
-                    <option value="{{ $item->id }}">{{$item->name}}</option>
-                  @endforeach
+            <div class="form-group">
+                <label for="child-category">Danh mục</label>
+                <select class="form-control" name="category_id">
+                    @foreach ($categories as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
                 </select>
-            </div> --}}
+            </div>
+            <div class="form-group">
+                <label for="child-category">Thương hiệu</label>
+                <select class="form-control" name="brand_id">
+                    @foreach ($brands as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mô tả</label>
+                <textarea class="form-control" name="description" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Nội dung</label>
+                <textarea class="ckeditor" cols="30" rows="10" name="content"></textarea>
+            </div>
             <input type="submit" value="Create" class="btn btn-primary btn-user btn-block">
           </form>
         </div>

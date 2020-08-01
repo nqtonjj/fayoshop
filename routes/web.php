@@ -20,15 +20,15 @@ Route::get('/', function () {
 
 // Front-end
 
-Route::get('index', 'PageController@index');
+Route::get('index', 'PageController@index')->name('trang-chu');
 
-Route::get('contact', 'PageController@contact');
+Route::get('lien-he', 'PageController@contact')->name('contact');
 
-Route::get('blog', 'PageController@blog');
+Route::get('blog', 'PageController@blog')->name('blog');
 
-Route::get('products/{$category}', 'PageController@products');
+Route::get('san-pham/{id?}', 'PageController@getproducts')->name('san-pham');
 
-Route::get('detail', 'PageController@detail');
+Route::get('detail/{id}', 'PageController@detail')->name('chi-tiet-san-pham');
 
 Route::get('register', 'PageController@register');
 
@@ -50,8 +50,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('brands', 'BrandController');
 
-    Route::resource('product', 'ProductsController');
+    Route::resource('sliders', 'SliderController');
 
+    Route::resource('product', 'ProductsController');
 
     Route::resource('users', 'UserController');
 

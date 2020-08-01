@@ -26,8 +26,6 @@ class BrandController extends Controller
      */
     public function create()
     {
-        // cái brands ở create dau? ??
-        // biet dau t coppy ben cate qua am =,=
         return view('module.brands.create');
     }
 

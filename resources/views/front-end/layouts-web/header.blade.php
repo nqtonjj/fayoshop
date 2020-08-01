@@ -39,7 +39,7 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </label>
                         <ul class="site-menu d-lg-block">
-                            <li class="active"><a href="/index">Trang Chủ</a></li>
+                        <li class="active"><a href="{{route('trang-chu')}}">Trang Chủ</a></li>
                             <li class="collap">
                                 <a class="btn" data-toggle="collapse" href="#collapseExample" role="button"
                                     aria-expanded="false" aria-controls="collapseExample">
@@ -48,24 +48,22 @@
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body border-top-0 border-bottom-0">
                                         <ul>
-                                            @foreach ($cate as $item)
-                                    <li class="has-children">
-                                        <a href="#">{{$item->name}}</a>
-
-                                    </li>
-                                    @endforeach
+                                            @foreach ($categories as $item)
+                                            <li class="has-children">
+                                                <a href="">{{$item->name}}</a>
+                                            </li>
+                                            @endforeach
                                         </ul>
 
                                     </div>
                                 </div>
                             </li>
                             <li class="has-children hide">
-                                <a href="#">Danh Mục</a>
+                                <a >Loại Sản phẩm</a>
                                 <ul class="dropdown">
-                                    @foreach ($cate as $item)
+                                    @foreach ($categories as $item)
                                     <li class="has-children">
-                                    <a href="/products/{{$item->id}}">{{$item->name}}</a>
-
+                                    <a href="{{route('san-pham', $item->id)}}">{{$item->name}}</a>
                                     </li>
                                     @endforeach
 
@@ -74,17 +72,15 @@
                             <li class="has-children hide">
                                 <a href="#">Thương hiệu</a>
                                 <ul class="dropdown">
-                                    @foreach ($brand as $item)
+                                    @foreach ($brands as $item)
                                     <li class="has-children">
-                                    <a href="#">{{$item->name}}</a>
-
+                                        <a href="#">{{$item->name}}</a>
                                     </li>
                                     @endforeach
-
                                 </ul>
                             </li>
-                        <li><a href="/blog">Blog</a></li>
-                            <li><a href="/contact">Liên Hệ</a></li>
+                            <li><a href="{{route('blog')}}">Blog</a></li>
+                        <li><a href="{{route('contact')}}">Liên Hệ</a></li>
                         </ul>
                     </nav>
                 </div>

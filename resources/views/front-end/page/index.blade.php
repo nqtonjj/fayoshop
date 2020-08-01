@@ -32,8 +32,7 @@
                                                     <img src="./images/product_2.png" alt="Super Omega 3" />
                                                 </div>
                                                 <div class="caption-item">
-                                                    <img src="./images/product_8.png"
-                                                        alt="Ảnh này để gì thì để" />
+                                                    <img src="./images/product_8.png" alt="Ảnh này để gì thì để" />
                                                 </div>
                                             </div>
                                             <div class="loader-caption"></div>
@@ -173,36 +172,39 @@
                                 <div class="product-grid mt-4">
                                     <div class="product-image">
                                         <a href="#">
-                                        <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
-                                        <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
+                                            <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
+                                            <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
                                         </a>
                                         @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
-                                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                                        <span
+                                            class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                                         @endif
                                         <ul class="card_social home__card-social">
                                             <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
                                                         class="fa fa-shopping-cart"></i></a></li>
                                             <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                             </li>
-                                            <li><a href="#" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
+                                            <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="product-content">
-                                    <h3 class="card__sell-title">
-                                        <a href="#">{{$item->name}}</a>
-                                    </h3>
-                                    @if ($item->price != 0)
-                                        <span style="text-decoration: line-through;font-size: 13px;"> {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                                        <h3 class="card__sell-title">
+                                        <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
+                                        </h3>
+                                        @if ($item->sale_price == 0)
+                                        <span style="font-size: 16px;color: tomato;">
+                                            {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                        </span>
+                                        @else
+                                        <span style="text-decoration: line-through;font-size: 13px">
+                                            {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
                                         </span>
                                         <span style="font-size: 16px;color: tomato;">
-                                        {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                            {{number_format($item->price, 0, '', ',').__(' VND')}}
                                         </span>
-                                    @else
-                                     <span style="text-decoration: line-through;font-size: 13px;"> {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
-                                      </span>
-                                     @endif
+                                        @endif
+
                                     </div>
 
                                 </div>
@@ -213,183 +215,144 @@
                                     <div class="product-image">
                                         <a href="single.html">
                                             <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
-                                        <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
+                            <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
+                            </a>
+                            @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
+                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                            @endif
+                            <ul class="card_social home__card-social">
+                                <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                </li>
+                                <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
+                                </li>
+                                <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="card__sell-title">
+                                <a href="#">{{$item->name}}</a>
+                            </h3>
+                            <span style="text-decoration: line-through;font-size: 13px;">
+                                {{number_format($item->sale_price, 0, '', ',').__(' VND')}}</span>
+                            <span style="font-size: 16px;color: tomato;">
+                                {{number_format($item->price, 0, '', ',').__(' VND')}}
+                            </span>
+                        </div>
+                    </div>
+                </div> --}}
+                @endforeach
+            </div>
+            <div class="swiper-pagination dbrr"></div>
+        </div>
+    </div>
+    <!-- tab discount -->
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <div class="tab-1">
+            <div class="swiper-wrapper">
+                {{-- @foreach ($sp_sale as $item)
+                            <div class="swiper-slide">
+                                <div class="product-grid mt-4">
+                                    <div class="product-image">
+                                        <a href="#">
+                                            <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
+                                            <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
                                         </a>
                                         @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
-                                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                                        <span
+                                            class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                                         @endif
                                         <ul class="card_social home__card-social">
                                             <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
                                                         class="fa fa-shopping-cart"></i></a></li>
                                             <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                             </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
+                                            <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="card__sell-title">
-                                            <a href="#">{{$item->name}}</a>
+                                        <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
                                         </h3>
-                                        <span style="text-decoration: line-through;font-size: 13px;"> {{number_format($item->sale_price, 0, '', ',').__(' VND')}}</span>
+                                        @if ($item->sale_price == 0)
                                         <span style="font-size: 16px;color: tomato;">
-                                                {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                            {{number_format($item->price, 0, '', ',').__(' VND')}}
                                         </span>
-                                        </div>
-                                </div>
-                            </div> --}}
-                            @endforeach
-                        </div>
-                        <div class="swiper-pagination dbrr"></div>
-                    </div>
-                </div>
-                <!-- tab discount -->
-                <div role="tabpanel" class="tab-pane" id="profile">
-                    <div class="tab-1">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
+                                        @else
+                                        <span style="text-decoration: line-through;font-size: 13px">
+                                            {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                                        </span>
+                                        <span style="font-size: 16px;color: tomato;">
+                                            {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                        </span>
+                                        @endif
 
-                            <!-- ITEM 2 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
                                     </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
+
                                 </div>
                             </div>
-                            <!-- ITEM3 -->
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-                <!-- tab product Hot -->
-
-                <div role="tabpanel" class="tab-pane" id="messages">
-                    <div class="tab-1">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="images/single_1.jpg">
-                                            <img class="pic-2" src="images/single_2.jpg">
-                                        </a>
-                                        <span class="product-trend-label">Mới</span>
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="single.html" data-tip="Chi tiết"><i
-                                                        class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title"><a href="single.html">Áo Men's Blazer</a>
-                                        </h3>
-                                        <div class="card__price">210.000 đ</div>
-                                    </div>
-                                </div>
-                                <!--
-                                    <div class="product-quick-view">
-                                        <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#quick-view"
-                                        tabindex="-1"
-                                        >quick view</a
-                                        >
-                                    </div> -->
-                            </div>
-
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-
-                </div>
+                @endforeach --}}
             </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
+    </div>
+    <!-- tab product Hot -->
+
+    <div role="tabpanel" class="tab-pane" id="messages">
+        <div class="tab-1">
+            <div class="swiper-wrapper">
+                @foreach ($sp_hot as $item)
+                <div class="swiper-slide">
+                    <div class="product-grid mt-4">
+                        <div class="product-image">
+                            <a href="#">
+                                <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
+                                <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
+                            </a>
+                            @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
+                            <span
+                                class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                            @endif
+                            <ul class="card_social home__card-social">
+                                <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
+                                            class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
+                                </li>
+                                <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="card__sell-title">
+                            <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
+                            </h3>
+                            @if ($item->sale_price == 0)
+                            <span style="font-size: 16px;color: tomato;">
+                                {{number_format($item->price, 0, '', ',').__(' VND')}}
+                            </span>
+                            @else
+                            <span style="text-decoration: line-through;font-size: 13px">
+                                {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                            </span>
+                            <span style="font-size: 16px;color: tomato;">
+                                {{number_format($item->price, 0, '', ',').__(' VND')}}
+                            </span>
+                            @endif
+
+                        </div>
+
+                    </div>
+                </div>
+    @endforeach
+
+        </div>
+ <!-- Add Pagination -->
+ <div class="swiper-pagination"></div>
+    </div>
+    </div>
+    </div>
     </div>
 </section>
 
@@ -521,12 +484,11 @@
                                 </a>
                                 <span class="product-trend-label">Mới</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -558,12 +520,11 @@
                                 </a>
                                 <span class="product-trend-label">Mới</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -594,12 +555,11 @@
                                 </a>
                                 <span class="product-trend-label">Mới</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -631,12 +591,11 @@
                                 <span class="product-trend-label">Mới</span>
                                 <span class="product-discount-label">-20%</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -668,12 +627,11 @@
                                 </a>
                                 <span class="product-trend-label">Mới</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -705,12 +663,11 @@
                                 </a>
                                 <span class="product-trend-label">Mới</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -742,12 +699,11 @@
                                 </a>
                                 <span class="product-trend-label">Mới</span>
                                 <ul class="card_social">
-                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="single.html" data-tip="Chi tiết"><i
-                                                class="fa fa-search"></i></a>
+                                    <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -781,151 +737,145 @@
 <section class="brands-areaas mt-5">
 
     <div class="container-fluid">
-      <div class="brands-area">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="brand-item">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/1.jpg" alt="" />
-                  </a>
+        <div class="brands-area">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="brand-item">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/1.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/2.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/3.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/1.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/2.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/3.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/1.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <img src="./images/brands/2.jpg" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/2.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/3.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/1.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/2.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/3.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/1.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="swiper-slide">
-                  <a href="#">
-                    <img src="./images/brands/2.jpg" alt="" />
-                  </a>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section class="news mt-5">
+<section class="news mt-5">
     <div class="news-pa">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-title">
-              <h3>News</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="news-paper mt-4">
         <div class="container">
-          <div class="row new-items">
-            <div class="col-lg-4 col-md-4 news-item">
-              <div class="images-it">
-                <a href="#">
-                  <img src="./images/news/blog_1.jpg" alt="" />
-                </a>
-              </div>
-              <div class="date-time">
-                <p class="cal-date-time">
-                  <img src="./images/calendar.svg" alt="" /> 11 Th6, 2020
-                </p>
-                <p class="category">Tin khuyến mãi</p>
-              </div>
-              <a href="#" class="title-news-heal"
-                >Chương trình tri ân khách hàng</a
-              >
-              <p>
-                Nhân ngày XX/YY/ZZ shop khuyến mãi từ ngày....
-              </p>
-              <p class="button-news">
-                <a href="#" class="btn-news">
-                  Xem thêm
-                </a>
-              </p>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h3>News</h3>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-lg-4 col-md-4 news-item">
-              <div class="images-it">
-                <a href="#">
-                  <img src="./images/news/blog_2.jpg" alt="" />
-                </a>
-              </div>
-              <div class="date-time">
-                <p class="cal-date-time">
-                  <img src="./images/calendar.svg" alt="" /> 11 Th6, 2020
-                </p>
-                <p class="category">Tin khuyến mãi</p>
-              </div>
-              <a href="#" class="title-news-heal"
-                >Chương trình tri ân khách hàng</a
-              >
-              <p>
-                Nhân ngày XX/YY/ZZ shop khuyến mãi từ ngày....
-              </p>
-              <p class="button-news">
-                <a href="#" class="btn-news">
-                  Xem thêm
-                </a>
-              </p>
-            </div>
-
-            <div class="col-lg-4 col-md-4 news-item">
-              <div class="images-it">
-                <a href="#">
-                  <img src="./images/news/blog_3.jpg" alt="" />
-                </a>
-              </div>
-              <div class="date-time">
-                <p class="cal-date-time">
-                  <img src="./images/calendar.svg" alt="" /> 11 Th6, 2020
-                </p>
-                <p class="category">Tin khuyến mãi</p>
-              </div>
-              <a href="#" class="title-news-heal"
-                >Chương trình tri ân khách hàng</a
-              >
-              <p>
-                Nhân ngày XX/YY/ZZ shop khuyến mãi từ ngày....
-              </p>
-              <p class="button-news">
-                <a href="#" class="btn-news">
-                  Xem thêm
-                </a>
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
+
+        <div class="news-paper mt-4">
+            <div class="container">
+                <div class="row new-items">
+                    <div class="col-lg-4 col-md-4 news-item">
+                        <div class="images-it">
+                            <a href="#">
+                                <img src="./images/news/blog_1.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="date-time">
+                            <p class="cal-date-time">
+                                <img src="./images/calendar.svg" alt="" /> 11 Th6, 2020
+                            </p>
+                            <p class="category">Tin khuyến mãi</p>
+                        </div>
+                        <a href="#" class="title-news-heal">Chương trình tri ân khách hàng</a>
+                        <p>
+                            Nhân ngày XX/YY/ZZ shop khuyến mãi từ ngày....
+                        </p>
+                        <p class="button-news">
+                            <a href="#" class="btn-news">
+                                Xem thêm
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 news-item">
+                        <div class="images-it">
+                            <a href="#">
+                                <img src="./images/news/blog_2.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="date-time">
+                            <p class="cal-date-time">
+                                <img src="./images/calendar.svg" alt="" /> 11 Th6, 2020
+                            </p>
+                            <p class="category">Tin khuyến mãi</p>
+                        </div>
+                        <a href="#" class="title-news-heal">Chương trình tri ân khách hàng</a>
+                        <p>
+                            Nhân ngày XX/YY/ZZ shop khuyến mãi từ ngày....
+                        </p>
+                        <p class="button-news">
+                            <a href="#" class="btn-news">
+                                Xem thêm
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 news-item">
+                        <div class="images-it">
+                            <a href="#">
+                                <img src="./images/news/blog_3.jpg" alt="" />
+                            </a>
+                        </div>
+                        <div class="date-time">
+                            <p class="cal-date-time">
+                                <img src="./images/calendar.svg" alt="" /> 11 Th6, 2020
+                            </p>
+                            <p class="category">Tin khuyến mãi</p>
+                        </div>
+                        <a href="#" class="title-news-heal">Chương trình tri ân khách hàng</a>
+                        <p>
+                            Nhân ngày XX/YY/ZZ shop khuyến mãi từ ngày....
+                        </p>
+                        <p class="button-news">
+                            <a href="#" class="btn-news">
+                                Xem thêm
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 @endsection
