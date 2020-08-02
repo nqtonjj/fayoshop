@@ -36,12 +36,12 @@ class OrderController extends Controller
     {
         # code...
         $rule = [
-            'product_id' => 'required',
             'orders_id' => 'required',
+            'product_id' => 'required',
         ];
-        $isValide = Validator::make($request->all(), $rule);
+        $isValidate = Validator::make($request->post(), $rule);
 
-        if ($isValide->fails()) return response()->json(['errMess' => 'khonog thanh cong']);
+        if ($isValidate->fails()) return response()->json(['errMess' => $isValidate->errors()->first()]);
 
         $order = Orders::where('id', $request->orders_id)->first();
         if (!$order) return response()->json(['messenge' => 'gio hang khong ton tai']);

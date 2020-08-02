@@ -105,49 +105,36 @@
                                 X
                             </a>
                             <span>Giỏ Hàng</span>
-                            <div class="item checkout-item border-0">
-                                <div class="cart_image" style=" width:60px;">
-                                    <img src="images/product_4.png" alt="" />
+                            <div class="list-item">
+                                <div class="item checkout-item border-0">
+                                    <div class="cart_image" style=" width:60px;">
+                                        <img src="images/product_4.png" alt="" />
+                                    </div>
+                                    <div class="cart_description cart_description2">
+                                        <span style="font-size: 11px;">Common Projects</span>
+                                        <span style="font-size: 11px;">x 3</span>
+                                        <span style="font-size: 11px;">White</span>
+                                    </div>
+                                    <div class="cart_total-price text-right" style="width: 30%;">
+                                        <p style="font-size: 14px;">
+                                            150.000 đ
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="cart_description cart_description2">
-                                    <span style="font-size: 11px;">Common Projects</span>
-                                    <span style="font-size: 11px;">x 3</span>
-                                    <span style="font-size: 11px;">White</span>
-                                </div>
-                                <div class="cart_total-price text-right" style="width: 30%;">
-                                    <p style="font-size: 14px;">
-                                        150.000 đ
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item checkout-item border-0">
-                                <div class="cart_image" style=" width:60px;">
-                                    <img src="images/product_4.png" alt="" />
-                                </div>
-                                <div class="cart_description cart_description2">
-                                    <span style="font-size: 11px;">Common Projects</span>
-                                    <span style="font-size: 11px;">x 3</span>
-                                    <span style="font-size: 11px;">White</span>
-                                </div>
-                                <div class="cart_total-price text-right" style="width: 30%;">
-                                    <p style="font-size: 14px;">
-                                        11.150.000 đ
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item checkout-item border-0">
-                                <div class="cart_image" style=" width:60px;">
-                                    <img src="images/product_4.png" alt="" />
-                                </div>
-                                <div class="cart_description cart_description2">
-                                    <span style="font-size: 11px;">Common Projects</span>
-                                    <span style="font-size: 11px;">x 3</span>
-                                    <span style="font-size: 11px;">White</span>
-                                </div>
-                                <div class="cart_total-price text-right" style="width: 30%;">
-                                    <p style="font-size: 14px;">
-                                        21.150.000 đ
-                                    </p>
+                                <div class="item checkout-item border-0">
+                                    <div class="cart_image" style=" width:60px;">
+                                        <img src="images/product_4.png" alt="" />
+                                    </div>
+                                    <div class="cart_description cart_description2">
+                                        <span style="font-size: 11px;">Common Projects</span>
+                                        <span style="font-size: 11px;">x 3</span>
+                                        <span style="font-size: 11px;">White</span>
+                                    </div>
+                                    <div class="cart_total-price text-right" style="width: 30%;">
+                                        <p style="font-size: 14px;">
+                                            11.150.000 đ
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <a href="cart.html" class="p-0 d-inline">

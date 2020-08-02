@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
 
-    <h1 class="h3 mb-2 text-gray-800">Bảng Slider</h1>
+    <h1 class="h3 mb-2 text-gray-800">Bảng Slide</h1>
     <p class="mb-4">Danh Sách</a></p>
     <a class="btn btn-primary" href="{{ route('slides.create') }}">Thêm mới</a>
     <div class="card shadow mb-4">

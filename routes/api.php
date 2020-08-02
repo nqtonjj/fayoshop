@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Custom_attributes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,8 @@ Route::group(['prefix' => '/', 'as' => 'api.', 'namespace' => 'API'], function (
         Route::delete('/{order_id}/{item_id}', 'OrderController@destroyOrderItem');
     });
 });
+Route::delete('attr/{id}', function ($id) {
+    Custom_attributes::where('id', $id)->delete();
+})->name('api.attr');
+
+Route::resource('product', 'ProductsController', ['only' => ['show']]);

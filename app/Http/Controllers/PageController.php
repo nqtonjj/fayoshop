@@ -22,8 +22,8 @@ class PageController extends Controller
     public function index()
     {
 
-        $featured = Products::where('is_new', 1)->orderByDesc('id')->get();
-        $sp_hot = Products::where('is_hot', 1)->orderByDesc('id')->get();
+        $featured = Products::where('is_new', 1)->with('attributes')->orderByDesc('id')->get();
+        $sp_hot = Products::where('is_hot', 1)->with('attributes')->orderByDesc('id')->get();
         $banner = slider::where('location', 'banner-home')->with(['slides' => function ($q) {
             return $q->with('image')->get();
         }])->first();
