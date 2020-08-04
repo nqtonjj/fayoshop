@@ -41,7 +41,7 @@
 
                             <td>{{$item->title}}</td>
                             <td>{{$item->content}}</td>
-                            <td>{{$item->image}}</td>
+                        <td><img src="uploads/slider/{{ $item->image }}" height="100" width="100"></td>
                             <td>{{$item->link}}</td>
                             <td>
                                <div class="d-flex">

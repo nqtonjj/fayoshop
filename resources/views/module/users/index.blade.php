@@ -4,7 +4,8 @@
             <!-- Page Heading -->
 
           <h1 class="h3 mb-2 text-gray-800">Bảng</h1>
-          <p class="mb-4">Danh sách tài khoản đăng ký</a>.</p>
+          <p class="mb-4">Danh sách tài khoản người dùng</a>.</p>
+          <a class="btn btn-primary" href="{{ route('users.create') }}">Thêm mới</a>
           <div class="card shadow mb-4">
             <!-- DataTales Example -->
 
@@ -18,6 +19,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
+                      <th>Avatar</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -25,6 +27,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
+                      <th>Avatar</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -33,6 +36,7 @@
                     <tr>
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
+                    <td><img src="uploads/avatar/{{$item->avatar}}"/></td>
                     <td>
                     <div class="d-flex">
                         <a href="{{ route('users.edit', $item->id) }}" class="text-primary p-1 mr-2">

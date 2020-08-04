@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,14 +31,15 @@ Route::get('san-pham/{id?}', 'PageController@getproducts')->name('san-pham');
 
 Route::get('detail/{id}', 'PageController@detail')->name('chi-tiet-san-pham');
 
-Route::get('register', 'PageController@register');
+Route::get('dang-ky', 'PageController@create')->name('dang-ky');
+Route::post('dang-ky', 'PageController@store')->name('dang-ky');
 
-Route::get('login', 'PageController@login')->name('customLogin');
+Route::get('login', 'PageController@login')->name('dang-nhap');
+
+
 
 
 Route::resource('asset', 'ImageController', ['only'=>['show']]);
-
-
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

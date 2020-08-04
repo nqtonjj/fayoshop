@@ -7,6 +7,10 @@ use App\Brand;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+use App\User;
+use App\Slider;
+use App\Customer;
 
 class PageController extends Controller
 {
@@ -18,10 +22,10 @@ class PageController extends Controller
      */
 
     public function index(){
-
+        $slider = Slider::orderBy('id', 'DESC')->take(3)->get();
         $featured = Products::where('is_new',1)->orderByDesc('id')->get();
         $sp_hot = Products::where('is_hot', 1)->orderByDesc('id')->get();
-        return view('front-end.page.index', compact('featured', 'sp_hot'));
+        return view('front-end.page.index', compact('featured', 'sp_hot', 'slider'));
     }
     public function contact(){
 
@@ -46,10 +50,17 @@ class PageController extends Controller
         return view('front-end.page.details', compact('sanpham', 'sp_tuongtu'));
     }
 
-    public function register(){
-
+    public function create(){
         return view('front-end.page.register');
     }
+
+    public function store(Request $request){
+        $param = $request->post();
+        $param['password'] = Hash::make($param['password']);
+        $model = User::create($param);
+        return redirect()->back()->with('message', 'Đăng ký thành công');
+    }
+
 
     public function login(){
 

@@ -15,7 +15,7 @@
             <span class="text-success">{{ session('message') }}</span>
           @endif
           </div>
-          <form class="user" method="POST" action="{{ route('users.store') }}">
+          <form class="user" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Full Name" name="name">
@@ -28,6 +28,12 @@
             <div class="form-group">
                 <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password">
             </div>
+
+            <div class="form-group">
+                <label>Hình đại diện</label>
+                <input type="file" name="image" class="file-upload-default">
+            </div>
+
             <input type="submit" value="Create User" class="btn btn-primary btn-user btn-block">
 
 

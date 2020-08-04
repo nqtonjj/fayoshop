@@ -13,7 +13,7 @@
                                 Tài khoản
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="regis.html">Đăng Kí</a>
+                                <a class="dropdown-item" href="{{route('dang-ky')}}">Đăng Kí</a>
                                 <a class="dropdown-item" href="regis.html">Đăng Nhập</a>
                             </div>
                         </div>
@@ -84,13 +84,15 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="icons">
+                <div class="icons" >
                     <a class="icons-btn d-inline-block">
                         <span>
+                        {{-- <form action="{{route('search')}}" method="GET">
                             <div class="searchBox">
-                                <input type="text" class="searchInput" name="" placeholder="Tìm kiếm">
+                                <input type="text" class="searchInput" name="" placeholder="Tìm kiếm"  style="z-index: 99; background-color:#f8f2f2">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </div>
+                           </form> --}}
                         </span>
                     </a>
                     <a class="icons-btn d-inline-block bag">

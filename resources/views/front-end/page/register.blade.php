@@ -9,7 +9,12 @@
                 <h4 class="text-center">
                     Đăng Kí
                 </h4>
-                <form>
+
+                @if(session('message'))
+                <span class="text-success">{{ session('message') }}</span>
+              @endif
+                <form method="POST">
+                    @csrf
                     </div>
                     <div class="form-group">
                         <div class="form-group ">
@@ -17,16 +22,13 @@
                             <input type="text" class="form-control" id="inputFirstname" placeholder="Nhập họ và tên" name="name">
                           </div>
                       <label for="inputEmail">Email</label>
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Nhập địa chỉ Email">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Nhập địa chỉ Email" name="email">
                     </div>
                     <div class="form-group">
                         <label for="inputPass">Mật Khẩu</label>
-                        <input type="password" class="form-control" id="inputAddress" placeholder="">
+                        <input type="password" class="form-control" id="inputAddress" placeholder="Nhập password" name="password">
                       </div>
-                      <div class="form-group">
-                        <label for="inputVeripass">Xác Nhận Mật Khẩu</label>
-                        <input type="password" class="form-control" id="inputVeripass" placeholder="">
-                      </div>
+
                     <button type="submit" class="btn review_submit_btn">
                         Đăng kí
                       </button>

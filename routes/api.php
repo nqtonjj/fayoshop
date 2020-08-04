@@ -30,3 +30,6 @@ Route::group(['prefix' => '/', 'as' => 'api.', 'namespace' => 'API'], function (
         Route::delete('/{order_id}/{item_id}', 'OrderController@destroyOrderItem');
     });
 });
+
+// mở chỗ update hình đi
+// cai route hay ben front
