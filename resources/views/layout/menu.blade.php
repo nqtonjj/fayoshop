@@ -58,6 +58,11 @@
                 <span>Slider</span></a>
             </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{route('slides.index')}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Slide</span></a>
+            </li>
+        <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Giỏ hàng</span></a>

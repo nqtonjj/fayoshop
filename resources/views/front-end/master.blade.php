@@ -122,7 +122,8 @@
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
 </script> -->
 	<script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-	<script src="js/custom.js"></script>
+	<script src="{{ asset('front-end/js/custom.js') }}"></script>
+	<script src="{{ asset('front-end/js/OrderCart.js') }}"></script>
 	<script src="js/custom-swiper.js"></script>
 	<script>
 		function openNav() {

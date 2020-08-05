@@ -6,6 +6,7 @@ use App\Model\Image;
 use App\Model\Category;
 use App\Brand;
 use App\Model\Products;
+use App\Slide;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,22 +29,25 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        view()->composer(['*'], function($view){
+        view()->composer(['*'], function ($view) {
             $categories = Category::all();
 
             $view->with('categories', $categories);
         });
 
-        view()->composer(['*'], function($view){
+        view()->composer(['*'], function ($view) {
             $brands = Brand::all();
-            $view->with( 'brands', $brands);
+            $view->with('brands', $brands);
         });
 
 
-        view()->composer('module.images.model', function($view){
+        view()->composer(['module.images.model-single', 'module.images.model-multi'], function ($view) {
             $images = Image::all();
             $view->with('images', $images);
         });
-
+        view()->composer('module.images.model-slide', function ($view) {
+            $slides = Slide::with('image')->where('slider_id', null)->get();
+            $view->with('slides', $slides);
+        });
     }
 }

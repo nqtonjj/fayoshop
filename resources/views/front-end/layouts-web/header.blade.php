@@ -8,13 +8,18 @@
                 <div class="col-md-6 text-right">
                     <div class="top_nav_right">
                         <div class="dropdown show">
+                            @if (Auth::check())
+                            <a class="dropdown-item" href="#">{{Auth::User()->name}}</a>
+                            @else
                             <a class="btn dropdown-toggle line-h-2" style="color: white;" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tài khoản
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{route('dang-ky')}}">Đăng Kí</a>
-                                <a class="dropdown-item" href="regis.html">Đăng Nhập</a>
+
+                                    <a class="dropdown-item" href="{{route('dang-ky')}}">Đăng Kí</a>
+                                    <a class="dropdown-item" href="{{route('dang-nhap')}}">Đăng Nhập</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -27,7 +32,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
                     <div class="site-logo">
-                        <a href="#" class="js-logo-clone">
+                        <a href="{{ route('trang-chu') }}" class="js-logo-clone">
                             <img src="images/logo.svg" alt="" style="width: 70px;height: 70px;">
                         </a>
                     </div>
@@ -87,12 +92,12 @@
                 <div class="icons" >
                     <a class="icons-btn d-inline-block">
                         <span>
-                        {{-- <form action="{{route('search')}}" method="GET">
+                        <form  method="GET" action="{{route('search')}}">
                             <div class="searchBox">
-                                <input type="text" class="searchInput" name="" placeholder="Tìm kiếm"  style="z-index: 99; background-color:#f8f2f2">
+                                <input type="text" class="searchInput" name="key" placeholder="Tìm kiếm"  style="z-index: 99; background-color:#f8f2f2">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </div>
-                           </form> --}}
+                           </form>
                         </span>
                     </a>
                     <a class="icons-btn d-inline-block bag">
@@ -107,49 +112,36 @@
                                 X
                             </a>
                             <span>Giỏ Hàng</span>
-                            <div class="item checkout-item border-0">
-                                <div class="cart_image" style=" width:60px;">
-                                    <img src="images/product_4.png" alt="" />
+                            <div class="list-item">
+                                <div class="item checkout-item border-0">
+                                    <div class="cart_image" style=" width:60px;">
+                                        <img src="images/product_4.png" alt="" />
+                                    </div>
+                                    <div class="cart_description cart_description2">
+                                        <span style="font-size: 11px;">Common Projects</span>
+                                        <span style="font-size: 11px;">x 3</span>
+                                        <span style="font-size: 11px;">White</span>
+                                    </div>
+                                    <div class="cart_total-price text-right" style="width: 30%;">
+                                        <p style="font-size: 14px;">
+                                            150.000 đ
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="cart_description cart_description2">
-                                    <span style="font-size: 11px;">Common Projects</span>
-                                    <span style="font-size: 11px;">x 3</span>
-                                    <span style="font-size: 11px;">White</span>
-                                </div>
-                                <div class="cart_total-price text-right" style="width: 30%;">
-                                    <p style="font-size: 14px;">
-                                        150.000 đ
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item checkout-item border-0">
-                                <div class="cart_image" style=" width:60px;">
-                                    <img src="images/product_4.png" alt="" />
-                                </div>
-                                <div class="cart_description cart_description2">
-                                    <span style="font-size: 11px;">Common Projects</span>
-                                    <span style="font-size: 11px;">x 3</span>
-                                    <span style="font-size: 11px;">White</span>
-                                </div>
-                                <div class="cart_total-price text-right" style="width: 30%;">
-                                    <p style="font-size: 14px;">
-                                        11.150.000 đ
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item checkout-item border-0">
-                                <div class="cart_image" style=" width:60px;">
-                                    <img src="images/product_4.png" alt="" />
-                                </div>
-                                <div class="cart_description cart_description2">
-                                    <span style="font-size: 11px;">Common Projects</span>
-                                    <span style="font-size: 11px;">x 3</span>
-                                    <span style="font-size: 11px;">White</span>
-                                </div>
-                                <div class="cart_total-price text-right" style="width: 30%;">
-                                    <p style="font-size: 14px;">
-                                        21.150.000 đ
-                                    </p>
+                                <div class="item checkout-item border-0">
+                                    <div class="cart_image" style=" width:60px;">
+                                        <img src="images/product_4.png" alt="" />
+                                    </div>
+                                    <div class="cart_description cart_description2">
+                                        <span style="font-size: 11px;">Common Projects</span>
+                                        <span style="font-size: 11px;">x 3</span>
+                                        <span style="font-size: 11px;">White</span>
+                                    </div>
+                                    <div class="cart_total-price text-right" style="width: 30%;">
+                                        <p style="font-size: 14px;">
+                                            11.150.000 đ
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <a href="cart.html" class="p-0 d-inline">

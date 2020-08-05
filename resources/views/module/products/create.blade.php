@@ -33,10 +33,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="hidden" name="image_id">
-                                @include('module.images.model')
-                                <br>
-                                <img id="view-image" width="200" class="mt-2">
+                                @include('module.images.model-single')
                             </div>
 
                             <div class="form-group">

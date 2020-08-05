@@ -3,12 +3,9 @@
 <div class="container-fluid">
     <!-- Page Heading -->
 
-    <h1 class="h3 mb-2 text-gray-800">Bảng Slider</h1>
+    <h1 class="h3 mb-2 text-gray-800">Bảng Slide</h1>
     <p class="mb-4">Danh Sách</a></p>
-    <a class="btn btn-primary" href="{{ route('sliders.create') }}">Thêm mới</a>
-    <a class="btn btn-primary" href="{{ route('slides.create') }}">Thêm slide mới</a>
-    <br>
-    <br>
+    <a class="btn btn-primary" href="{{ route('slides.create') }}">Thêm mới</a>
     <div class="card shadow mb-4">
         <!-- DataTales Example -->
 
@@ -22,7 +19,8 @@
                         <tr>
 
                             <th>Title</th>
-                            <th>Location</th>
+                            <th>Slider</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,23 +28,25 @@
                         <tr>
 
                             <th>Title</th>
-                            <th>Location</th>
+                            <th>Slider</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($sliders as $item)
+                        @foreach ($slide as $item)
                         <tr>
                             <td>{{$item->title}}</td>
-                            <td>{{$item->location}}</td>
+                            <td>{{$item->slider ? $item->slider['title'] : ''}}</td>
+                            <td><img width="100" src="{{ route('asset.show', $item->image['name']) }}" alt=""></td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="{{ route('sliders.edit', $item->id) }}" class="text-primary p-1 mr-2"
+                                    <a href="{{ route('slides.edit', $item->id) }}" class="text-primary p-1 mr-2"
                                         data-toggle="tooltip" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <form action="{{route('sliders.destroy', $item->id)}}" method="post">
+                                    <form action="{{route('slides.destroy', $item->id)}}" method="post">
                                         @csrf
                                         @method("DELETE")
                                         <button class="btn btn btn-primary" type="submit" data-toggle="tooltip"
@@ -60,7 +60,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $sliders->links() }}
+                {{ $slide->links() }}
             </div>
         </div>
     </div>

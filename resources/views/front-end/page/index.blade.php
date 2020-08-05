@@ -2,7 +2,7 @@
 @section('title', 'Trang chủ')
 @section('content')
 <section id="banner-header" class="header-banner">
-    <div class="banner_carousel">
+    {{-- <div class="banner_carousel">
         <div class="swiper-wrapper">
             @foreach ($slider as $item)
             <div class="swiper-slide">
@@ -47,6 +47,36 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination indicators"></div>
         </div>
+    </div> --}}
+
+    @if ($banner ?? false)
+    <div class="banner_carousel">
+        <div class="swiper-wrapper">
+            @foreach ($banner->slides as $item)
+            <div class="swiper-slide">
+                <div class="banner">
+                    <img src="/asset/{{$item->image['name']}}" alt="{{$item->title}}">
+                    <div class="caption-car">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 caption">
+                                    <h1>{{ $item->title }}</h1>
+                                    <span class="caption-itr">{{ $item->content }}</span>
+                                    {{-- TODO update link --}}
+                                    <div class="caption-button">
+                                        <a href="#">MUA NGAY</a>
+                                        <a href="#">XEM THÊM</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
 </section>
 
 
@@ -147,17 +177,22 @@
                                             class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                                         @endif
                                         <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
+                                            <li>
+                                                <a href="#" class="add-to-cart" data-item="{{$item}}"
+                                                    data-tip="Thêm vào giỏ hàng">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </a>
+                                            </li>
                                             <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                             </li>
-                                            <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                                            <li><a href="{{ route('chi-tiet-san-pham', $item->id) }}"
+                                                    data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="card__sell-title">
-                                        <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
+                                            <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
                                         </h3>
                                         @if ($item->sale_price == 0)
                                         <span style="font-size: 16px;color: tomato;">
@@ -223,47 +258,45 @@
                                     <div class="product-image">
                                         <a href="#">
                                             <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
-                                            <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
-                                        </a>
-                                        @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
-                                        <span
-                                            class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
-                                        @endif
-                                        <ul class="card_social home__card-social">
-                                            <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                                        class="fa fa-shopping-cart"></i></a></li>
-                                            <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                            </li>
-                                            <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="card__sell-title">
-                                        <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
-                                        </h3>
-                                        @if ($item->sale_price == 0)
-                                        <span style="font-size: 16px;color: tomato;">
-                                            {{number_format($item->price, 0, '', ',').__(' VND')}}
-                                        </span>
-                                        @else
-                                        <span style="text-decoration: line-through;font-size: 13px">
-                                            {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
-                                        </span>
-                                        <span style="font-size: 16px;color: tomato;">
-                                            {{number_format($item->price, 0, '', ',').__(' VND')}}
-                                        </span>
-                                        @endif
-
-                                    </div>
-
-                                </div>
-                            </div>
-                @endforeach --}}
+                <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
+                </a>
+                @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
+                <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                @endif
+                <ul class="card_social home__card-social">
+                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                    </li>
+                </ul>
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="product-content">
+                <h3 class="card__sell-title">
+                    <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
+                </h3>
+                @if ($item->sale_price == 0)
+                <span style="font-size: 16px;color: tomato;">
+                    {{number_format($item->price, 0, '', ',').__(' VND')}}
+                </span>
+                @else
+                <span style="text-decoration: line-through;font-size: 13px">
+                    {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                </span>
+                <span style="font-size: 16px;color: tomato;">
+                    {{number_format($item->price, 0, '', ',').__(' VND')}}
+                </span>
+                @endif
+
+            </div>
+
         </div>
+    </div>
+    @endforeach --}}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    </div>
     </div>
     <!-- tab product Hot -->
 
@@ -279,12 +312,13 @@
                                 <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
                             </a>
                             @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
-                            <span
-                                class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
+                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                             @endif
                             <ul class="card_social home__card-social">
-                                <li><a href="#" data-tip="Thêm vào giỏ hàng"><i
-                                            class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="#" class="add-to-cart" data-item="{{$item}}" data-tip="Thêm vào giỏ hàng">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </a>
+                                </li>
                                 <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                 </li>
                                 <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
@@ -293,7 +327,7 @@
                         </div>
                         <div class="product-content">
                             <h3 class="card__sell-title">
-                            <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
+                                <a href="{{route('chi-tiet-san-pham', $item->id)}}">{{$item->name}}</a>
                             </h3>
                             @if ($item->sale_price == 0)
                             <span style="font-size: 16px;color: tomato;">
@@ -312,12 +346,12 @@
 
                     </div>
                 </div>
-    @endforeach
+                @endforeach
 
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
- <!-- Add Pagination -->
- <div class="swiper-pagination"></div>
-    </div>
     </div>
     </div>
     </div>

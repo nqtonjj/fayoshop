@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Slide;
 use App\Slider;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,7 @@ class SliderController extends Controller
     {
         //
         $sliders = Slider::paginate(10);
-        return view ('module.sliders.index', compact('sliders'));
-
+        return view('module.sliders.index', compact('sliders'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SliderController extends Controller
     public function create()
     {
         //
-        return view ('module.sliders.create');
+        return view('module.sliders.create');
     }
 
     /**
@@ -40,45 +40,63 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         //
-        $param = $request->post();
-        $get_image = $request->file('image');
-        if($get_image){
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.',$get_name_image));
-            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('uploads/slider',$new_image);
-            $slider = new Slider();
-            $slider->title = $param['title'];
-            $slider->content = $param['content'];
-            $slider->image = $new_image;
-            $slider->link = $param['link'];
-            $slider->save();
-            return redirect()->back();
+        // $param = $request->post();
+        // $get_image = $request->file('image');
+        // if($get_image){
+        //     $get_name_image = $get_image->getClientOriginalName();
+        //     $name_image = current(explode('.',$get_name_image));
+        //     $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+        //     $get_image->store('public/uploads/slider',$new_image);
+        //     $slider = new Slider();
+        //     $slider->title = $param['title'];
+        //     $slider->content = $param['content'];
+        //     $slider->image = $new_image;
+        //     $slider->link = $param['link'];
+        //     $slider->save();
+        //     return redirect()->back();
+        // }
+        // $model = Slider::create($param);
+        $param = [
+            'title' => $request->title,
+            'location' => $request->location,
+        ];
+        $slider = Slider::create($param);
+        if ($request->has('image_id')) {
+            foreach ($request->image_id as $slider_id) {
+                Slide::find($slider_id)->update([
+                    'slider_id' => $slider->id
+                ]);
+            }
         }
-        $model = Slider::create($param);
+
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Slider  $slider
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Slider $slider)
+    public function show($id)
     {
-        //
+        $slider = Slider::where('id', $id)->with(['slides' => function ($q) {
+            return $q->with('image')->get();
+        }])->first();
+        return response()->json(['data' => $slider]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Slider  $slider
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slider $slider)
+    public function edit($id)
     {
-        //
+        $slider = Slider::where('id', $id)->with(['slides' => function ($q) {
+            return $q->with('image')->get();
+        }])->first();
         return view('module.sliders.update')->with('slider', $slider);
     }
 

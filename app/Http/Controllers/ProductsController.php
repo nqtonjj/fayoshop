@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Products;
 use App\Brand;
+use App\Http\Resources\ProductsResources;
 use App\Model\Category;
 use App\Model\Custom_attributes;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class ProductsController extends Controller
             $array = $request['attributes'];
             $attributes = array();
             foreach (array_keys($array) as $fieldKey) {
-                foreach ($array[$fieldKey] as $key=>$value) {
+                foreach ($array[$fieldKey] as $key => $value) {
                     $attributes[$key][$fieldKey] = $value;
                 }
             }
@@ -63,18 +64,18 @@ class ProductsController extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with('cate', $cate)->with('brand', $brand) ;
+        return redirect()->back()->with('cate', $cate)->with('brand', $brand);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Products  $products
+     * @param  \App\Model\Products  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show(Products $product)
     {
-
+        return new ProductsResources($product);
     }
 
     /**
@@ -86,7 +87,8 @@ class ProductsController extends Controller
     public function edit(Products $product)
     {
         //
-        return view('module.products.update')->with('product', $product);
+        $attr = Custom_attributes::where('products_id', $product->id)->get();
+        return view('module.products.update')->with(['product' => $product, 'attr' => $attr]);
     }
 
     /**
@@ -99,9 +101,34 @@ class ProductsController extends Controller
     public function update(Request $request, Products $product)
     {
         $param = $request->post();
+
         $param['is_hot'] = $param['is_hot'] ?? false ? true : false;
         $param['is_new'] = $param['is_new'] ?? false ? true : false;
         $product->update($param);
+
+        if ($product && $request->has('attributes')) {
+            $array = $request['attributes'];
+            $attributes = array();
+            foreach (array_keys($array) as $fieldKey) {
+                foreach ($array[$fieldKey] as $key => $value) {
+                    $attributes[$key][$fieldKey] = $value;
+                }
+            }
+
+            foreach ($attributes as $key => $value) {
+                if (array_key_exists('id', $value)) {
+                    Custom_attributes::where('id', $value['id'])->update($value);
+                }else {
+                    Custom_attributes::create([
+                        'products_id' => $product['id'],
+                        'label' => $value['label'],
+                        'value' => $value['value'],
+                        'price' => $value['price'],
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('product.index');
     }
 
@@ -116,7 +143,5 @@ class ProductsController extends Controller
         //
         $product->delete();
         return redirect()->route('product.index');
-
-
     }
 }
