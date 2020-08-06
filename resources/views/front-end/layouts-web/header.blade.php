@@ -7,21 +7,38 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <div class="top_nav_right">
+                        @guest
                         <div class="dropdown show">
-                            @if (Auth::check())
-                            <a class="dropdown-item" href="#">{{Auth::User()->name}}</a>
-                            @else
                             <a class="btn dropdown-toggle line-h-2" style="color: white;" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tài khoản
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                                    <a class="dropdown-item" href="{{route('dang-ky')}}">Đăng Kí</a>
-                                    <a class="dropdown-item" href="{{route('dang-nhap')}}">Đăng Nhập</a>
-                                @endif
+                                <a class="dropdown-item" href="{{route('dang-ky')}}">Đăng Kí</a>
+                                <a class="dropdown-item" href="{{route('dang-nhap')}}">Đăng Nhập</a>
                             </div>
                         </div>
+                        @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -44,7 +61,7 @@
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </label>
                         <ul class="site-menu d-lg-block">
-                        <li class="active"><a href="{{route('trang-chu')}}">Trang Chủ</a></li>
+                            <li class="active"><a href="{{route('trang-chu')}}">Trang Chủ</a></li>
                             <li class="collap">
                                 <a class="btn" data-toggle="collapse" href="#collapseExample" role="button"
                                     aria-expanded="false" aria-controls="collapseExample">
@@ -64,11 +81,11 @@
                                 </div>
                             </li>
                             <li class="has-children hide">
-                                <a >Loại Sản phẩm</a>
+                                <a>Loại Sản phẩm</a>
                                 <ul class="dropdown">
                                     @foreach ($categories as $item)
                                     <li class="has-children">
-                                    <a href="{{route('san-pham', $item->id)}}">{{$item->name}}</a>
+                                        <a href="{{route('san-pham', $item->id)}}">{{$item->name}}</a>
                                     </li>
                                     @endforeach
 
@@ -85,19 +102,20 @@
                                 </ul>
                             </li>
                             <li><a href="{{route('blog')}}">Blog</a></li>
-                        <li><a href="{{route('contact')}}">Liên Hệ</a></li>
+                            <li><a href="{{route('contact')}}">Liên Hệ</a></li>
                         </ul>
                     </nav>
                 </div>
-                <div class="icons" >
+                <div class="icons">
                     <a class="icons-btn d-inline-block">
                         <span>
-                        <form  method="GET" action="{{route('search')}}">
-                            <div class="searchBox">
-                                <input type="text" class="searchInput" name="key" placeholder="Tìm kiếm"  style="z-index: 99; background-color:#f8f2f2">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </div>
-                           </form>
+                            <form method="GET" action="{{route('search')}}">
+                                <div class="searchBox">
+                                    <input type="text" class="searchInput" name="key" placeholder="Tìm kiếm"
+                                        style="z-index: 99; background-color:#f8f2f2">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </form>
                         </span>
                     </a>
                     <a class="icons-btn d-inline-block bag">

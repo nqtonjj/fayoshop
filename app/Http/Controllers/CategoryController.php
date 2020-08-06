@@ -9,13 +9,23 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $request->user()->authorizeRoles('admin');
         $categoriesPaginate = Category::orderBy('priority', 'DESC')->paginate(10);
         return view('module.categories.index')->with('categoriesPaginate', $categoriesPaginate);
     }
@@ -49,7 +59,7 @@ class CategoryController extends Controller
         $save = Category::create($category);
         if ($save) {
             return redirect()->route('category.index');
-        }else {
+        } else {
             return redirect()->back();
         }
     }
@@ -62,7 +72,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        
     }
 
     /**

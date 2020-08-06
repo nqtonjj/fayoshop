@@ -39,20 +39,16 @@ Route::group(['prefix' => '/'], function () {
     Route::get('dang-ky', 'PageController@create')->name('dang-ky');
     Route::post('dang-ky', 'PageController@store')->name('dang-ky');
     Route::get('search', 'PageController@search')->name('search');
-
 });
 
 
 
-Route::resource('asset', 'ImageController', ['only'=>['show']]);
+Route::resource('asset', 'ImageController', ['only' => ['show']]);
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('/', function () {
-        return view('module.dashboard.index');
-    })->name('home');
     Route::resource('category', 'CategoryController');
 
     Route::resource('brands', 'BrandController');
