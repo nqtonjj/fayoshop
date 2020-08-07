@@ -9,11 +9,9 @@
                 <h4 class="text-center">
                     Đăng nhập
                 </h4>
-                @if(session('message'))
-                <span class="text-success">{{ session('message') }}</span>
-              @endif
-            <form action="{{route('dang-nhap')}}" method="POST">
-            @csrf
+
+                <form method="POST" action="{{ route('dang-nhap') }}">
+                @csrf
                     </div>
                     <div class="form-group">
                       <label for="inputEmail">Email</label>
@@ -32,3 +30,7 @@
     </div>
 </div>
 @endsection
+
+
+
+

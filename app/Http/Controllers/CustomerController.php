@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Customer;
 use Illuminate\Http\Request;
 
+
 class CustomerController extends Controller
 {
     /**

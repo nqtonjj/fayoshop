@@ -31,14 +31,16 @@ Route::group(['prefix' => '/'], function () {
     Route::get('san-pham/{id?}', 'PageController@getproducts')->name('san-pham');
 
     Route::get('detail/{id}', 'PageController@detail')->name('chi-tiet-san-pham');
-
-    Route::get('register', 'PageController@register');
-
-    Route::get('dang-nhap', 'PageController@login')->name('dang-nhap');
-    Route::post('dang-nhap', 'PageController@postLogin')->name('dang-nhap');
-    Route::get('dang-ky', 'PageController@create')->name('dang-ky');
-    Route::post('dang-ky', 'PageController@store')->name('dang-ky');
     Route::get('search', 'PageController@search')->name('search');
+
+    Route::get('dang-nhap', 'khachhang\LoginController@showLoginForm')->name('dang-nhap');
+    Route::post('dang-nhap', 'khachhang\LoginController@login')->name('dang-nhap-submit');
+    Route::post('dang-xuat', 'khachhang\LoginController@logout')->name('dang-xuat');
+
+
+    // // Reg
+    // Route::get('dang-ky', 'khachhang\RegisterController@showRegistrationForm')->name('dang-ky');
+    // Route::post('dang-ky', 'khachhang\RegisterController@showRegistrationForm')->name('dang-ky-submit');
 
 });
 

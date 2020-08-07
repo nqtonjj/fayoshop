@@ -8,18 +8,15 @@
                 <div class="col-md-6 text-right">
                     <div class="top_nav_right">
                         <div class="dropdown show">
-                            @if (Auth::check())
-                            <a class="dropdown-item" href="#">{{Auth::User()->name}}</a>
-                            @else
                             <a class="btn dropdown-toggle line-h-2" style="color: white;" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tài khoản
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                                    <a class="dropdown-item" href="{{route('dang-ky')}}">Đăng Kí</a>
-                                    <a class="dropdown-item" href="{{route('dang-nhap')}}">Đăng Nhập</a>
-                                @endif
+                                    <a class="dropdown-item" href="#">Đăng Kí</a>
+                            <a class="dropdown-item" href="{{route('dang-nhap')}}">Đăng Nhập</a>
+
                             </div>
                         </div>
                     </div>

@@ -4,15 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class Customer extends Model
+use Illuminate\Notifications\Notifiable;
+class Customer extends Authenticatable
 {
-    use Authenticatable;
+
     //
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+    use Notifiable;
+
+    protected $guard = 'customer';
+
     protected $fillable = [
         'name', 'email', 'password',
     ];

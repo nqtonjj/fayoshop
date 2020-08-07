@@ -64,23 +64,8 @@ class PageController extends Controller
         return view('front-end.page.register');
     }
 
-    public function store(Request $request){
-        $param = $request->post();
-        $param['password'] = Hash::make($param['password']);
-        $model = User::create($param);
-        return redirect()->back()->with('message', 'Đăng ký thành công');
-    }
 
 
-    public function login(){
 
-        return view('front-end.page.login');
-    }
 
-   public function search(Request $req){
-    $product = Products::where('name','like','%'.$req->key.'%')
-                ->orWhere('price', $req->key)
-                ->get();
-        return view ('front-end.page.search', compact('product'));
-   }
 }
