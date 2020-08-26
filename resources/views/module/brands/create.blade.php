@@ -24,7 +24,7 @@
             <div class="form-group">
                 <select class="form-control"  name="parent_id" id="parent_id">
                   <option value="0">Chọn thương hiệu cấp 1</option>
-                  @foreach($categories as $item)
+                  @foreach($brands as $item)
                     <option value="{{ $item->id }}">{{$item->name}}</option>
                   @endforeach
                 </select>

@@ -13,6 +13,6 @@ class ProductsSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
-        factory(Products::class, 5)->create();
+        factory(Products::class, 1)->create();
     }
 }

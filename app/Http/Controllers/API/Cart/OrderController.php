@@ -44,7 +44,7 @@ class OrderController extends Controller
         if ($isValidate->fails()) return response()->json(['errMess' => $isValidate->errors()->first()]);
 
         $order = Orders::where('id', $request->orders_id)->first();
-        if (!$order) return response()->json(['messenge' => 'gio hang khong ton tai']);
+        if (!$order) return response()->json(['messenge' => 'Giỏ hàng không tồn tại ']);
 
         $orderItem = [
             'orders_id' => $request->orders_id,

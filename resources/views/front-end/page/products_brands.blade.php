@@ -5,9 +5,11 @@
 <section class="single-banner">
     <div class="single__banner-img">
         <div class="single__banner-text line">
+            @foreach ($name_brand as $item)
             <p class="text-line">
-                Danh mục sản phẩm
+                {{$item->name}}
             </p>
+            @endforeach
         </div>
     </div>
 </section>
@@ -18,15 +20,14 @@
             <!-- Breadcrumbs -->
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
-                    <li>
-                    <a href="{{route('trang-chu')}}">Trang chủ</a></li>
-                    <li class="active">
-                        @foreach ($name_cate as $item)
-                        <a href="{{route('san-pham', $item->id)}}"><i class="fa fa-angle-right" aria-hidden="true"></i>
+                <li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
+                <li class="active">
+                    @foreach ($name_brand as $item)
+                <a href="{{route('thuong-hieu', $item->id)}}"><i class="fa fa-angle-right" aria-hidden="true"></i>
                             {{$item->name}}
                         </a>
                         @endforeach
-                    </li>
+                </li>
                 </ul>
             </div>
         </div>
@@ -63,7 +64,7 @@
                     </select>
                 </span>
             <span class="pr-2">
-                <select name="" class="sortPrice" >
+                <select name="" id="">
                     <option value="">Giá</option>
                     <option value="">100.000đ - 300.000đ</option>
                     <option value="">300.000đ - 500.000đ</option>
@@ -107,7 +108,7 @@
                 <!-- All -->
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="all-tab">
                     <div class="row">
-                        @foreach ($loai_sp as $item)
+                        @foreach ($brand_sp as $item)
                         <div class="col-lg-4">
                             <div class="product-grid mt-4">
                                 <div class="product-image">
@@ -119,12 +120,12 @@
                                     <span
                                         class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                                     @endif
-                                    <ul class="card_social tab_social" style="left: 30%">
+                                    <ul class="card_social">
                                         <li><a class="addCart" idsp="{{$item['id']}}" href="#" data-tip="Thêm vào giỏ hàng"><i
                                                     class="fa fa-shopping-cart"></i></a></li>
                                         <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                         </li>
-                                        <li><a href="{{route('chi-tiet-san-pham', $item->id)}}" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -152,7 +153,7 @@
                 <!-- New -->
                 <div class="tab-pane fade" id="new" role="tabpanel" aria-labelledby="new-tab">
                     <div class="row">
-                        @foreach ($loai_sp as $item)
+                        @foreach ($brand_sp as $item)
                         @if($item->is_hot === 0)
                         <div class="col-lg-4">
                             <div class="product-grid mt-4">
@@ -165,12 +166,12 @@
                                     <span
                                         class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                                     @endif
-                                    <ul class="card_social tab_social" style="left: 30%">
-                                        <li class="fix-social"><a class="addCart" idsp="{{$item['id']}}" href="#" data-tip="Thêm vào giỏ hàng"><i
+                                    <ul class="card_social">
+                                        <li><a class="addCart" idsp="{{$item['id']}}" href="#" data-tip="Thêm vào giỏ hàng"><i
                                                     class="fa fa-shopping-cart"></i></a></li>
-                                        <li class="fix-social"><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
+                                        <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                         </li>
-                                        <li class="fix-social"><a href="{{route('chi-tiet-san-pham', $item->id)}}" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -201,7 +202,7 @@
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="sale-tab">
                     <div class="row">
 
-                        @foreach ($loai_sp as $item)
+                        @foreach ($brand_sp as $item)
                         @if($item->sale_price > 0)
                         <div class="col-lg-4">
                             <div class="product-grid mt-4">
@@ -214,12 +215,12 @@
                                     <span
                                         class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                                     @endif
-                                    <ul class="card_social tab_social" style="left: 30%">
+                                    <ul class="card_social">
                                         <li><a class="addCart" idsp="{{$item['id']}}" href="#" data-tip="Thêm vào giỏ hàng"><i
                                                     class="fa fa-shopping-cart"></i></a></li>
                                         <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                                         </li>
-                                        <li><a href="{{route('chi-tiet-san-pham', $item->id)}}" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
+                                        <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
                                         </li>
                                     </ul>
                                 </div>

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Role;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Http\Request;
@@ -47,16 +49,16 @@ class UserController extends Controller
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/uploads/avatar',$new_image);
+            $get_image->move('uploads/avatar',$new_image);
+
             $slider = new User();
             $slider->name = $param['name'];
             $slider->email  = $param['email'];
-            $slider->avatar = $new_image;
+            $slider->avatar = 'uploads/avatar/'.$new_image;
             $slider->password = $param['password'];
             $slider->save();
             return redirect()->back();
         }
-
         $model = User::create($param);
         return redirect()->back()->with('message', 'Tạo User thành công');
     }

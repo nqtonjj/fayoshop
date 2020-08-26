@@ -178,7 +178,7 @@
                                         @endif
                                         <ul class="card_social home__card-social">
                                             <li>
-                                                <a href="#" class="add-to-cart" data-item="{{$item}}"
+                                                <a href="{{route('gio-hang')}}" class="addCart" idsp="{{$item['id']}}" data-item="{{$item}}"
                                                     data-tip="Thêm vào giỏ hàng">
                                                     <i class="fa fa-shopping-cart"></i>
                                                 </a>
@@ -211,38 +211,7 @@
 
                                 </div>
                             </div>
-                            <!-- ITEM 2 -->
-                            {{-- <div class="swiper-slide">
-                                <div class="product-grid mt-4">
-                                    <div class="product-image">
-                                        <a href="single.html">
-                                            <img class="pic-1" src="{{ route('asset.show', $item->image['name']) }}">
-                            <img class="pic-2" src="{{ route('asset.show', $item->image['name']) }}">
-                            </a>
-                            @if ($item['is_new'] === 1 || $item['is_hot'] === 1)
-                            <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
-                            @endif
-                            <ul class="card_social home__card-social">
-                                <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
-                                </li>
-                                <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
-                                </li>
-                                <li><a href="single.html" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="card__sell-title">
-                                <a href="#">{{$item->name}}</a>
-                            </h3>
-                            <span style="text-decoration: line-through;font-size: 13px;">
-                                {{number_format($item->sale_price, 0, '', ',').__(' VND')}}</span>
-                            <span style="font-size: 16px;color: tomato;">
-                                {{number_format($item->price, 0, '', ',').__(' VND')}}
-                            </span>
-                        </div>
-                    </div>
-                </div> --}}
+
                 @endforeach
             </div>
             <div class="swiper-pagination dbrr"></div>
@@ -252,7 +221,7 @@
     <div role="tabpanel" class="tab-pane" id="profile">
         <div class="tab-1">
             <div class="swiper-wrapper">
-                {{-- @foreach ($sp_sale as $item)
+                @foreach ($sp_sale as $item)
                             <div class="swiper-slide">
                                 <div class="product-grid mt-4">
                                     <div class="product-image">
@@ -264,7 +233,12 @@
                 <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                 @endif
                 <ul class="card_social home__card-social">
-                    <li><a href="#" data-tip="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li>
+                        <a href="{{route('gio-hang')}}" class="addCart" idsp="{{$item['id']}}" data-item="{{$item}}"
+                            data-tip="Thêm vào giỏ hàng">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </li>
                     <li><a href="#" data-tip="Yêu thích"><i class="fa fa-heart"></i></a>
                     </li>
                     <li><a href="#" data-tip="Chi tiết"><i class="fa fa-search"></i></a>
@@ -292,7 +266,7 @@
 
         </div>
     </div>
-    @endforeach --}}
+    @endforeach
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -315,7 +289,9 @@
                             <span class="product-trend-label">{{ $item['is_hot'] === 1 ? 'Hot' : 'Mới' }}</span>
                             @endif
                             <ul class="card_social home__card-social">
-                                <li><a href="#" class="add-to-cart" data-item="{{$item}}" data-tip="Thêm vào giỏ hàng">
+                                <li>
+                                    <a href="{{route('gio-hang')}}" class="addCart" idsp="{{$item['id']}}" data-item="{{$item}}"
+                                        data-tip="Thêm vào giỏ hàng">
                                         <i class="fa fa-shopping-cart"></i>
                                     </a>
                                 </li>
@@ -335,10 +311,10 @@
                             </span>
                             @else
                             <span style="text-decoration: line-through;font-size: 13px">
-                                {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
+                                {{number_format($item->price, 0, '', ',').__(' VND')}}
                             </span>
                             <span style="font-size: 16px;color: tomato;">
-                                {{number_format($item->price, 0, '', ',').__(' VND')}}
+                                {{number_format($item->sale_price, 0, '', ',').__(' VND')}}
                             </span>
                             @endif
 
@@ -407,6 +383,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
                     </div>
@@ -472,7 +449,7 @@
         </div>
     </div>
 
-    <div class="best-seller mt-3">
+    {{-- <div class="best-seller mt-3">
         <div class="container">
             <div class="slider-seller">
                 <div class="swiper-wrapper">
@@ -732,7 +709,7 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 </section>
 
 <section class="brands-areaas mt-5">

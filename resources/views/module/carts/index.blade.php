@@ -3,14 +3,14 @@
 <div class="container-fluid">
     <!-- Page Heading -->
 
-    <h1 class="h3 mb-2 text-gray-800">Bảng Sản phẩm</h1>
-    <p class="mb-4">Sản phẩm</a></p>
+    <h1 class="h3 mb-2 text-gray-800">Đơn hàng</h1>
+    <p class="mb-4">Đơn hàng</a></p>
     <div class="card shadow mb-4">
         <!-- DataTales Example -->
 
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
-            <a class="btn btn-primary" href="{{ route('product.create') }}">Thêm mới</a>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách </h6>
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -18,73 +18,57 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
-                            <th>Sale Price</th>
-                            <th>Image</th>
-                            <th>Size</th>
-                            <th>Hot</th>
-                            <th>New</th>
-                            <th>Loại</th>
-                            <th>Thương hiệu</th>
-                            <th>Mô tả</th>
-                            <th>Nội dung</th>
-                            <th>Parent</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Att</th>
+                            <th>Tổng giá</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
-                            <th>Sale Price</th>
-                            <th>Image</th>
-                            <th>Size</th>
-                            <th>Hot</th>
-                            <th>New</th>
-                            <th>Loại</th>
-                            <th>Thương hiệu</th>
-                            <th>Mô tả</th>
-                            <th>Nội dung</th>
-                            <th>Parent</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Att</th>
+                            <th>Tổng giá</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($products as $item)
+                        @foreach ($cart as $item)
                         <tr>
-                            <td>{{$item->name}}</td>
-                            <td>{{ number_format($item->price, 0, '', ',').__(' VND') }} </td>
-                            <td>{{ number_format($item->sale_price, 0, '', ',').__(' VND') }}</td>
-                            <td> <img width="100" src="{{ route('asset.show', $item->image['name']) }}">
-                            </td>
-                            <td>{{$item->size}}</td>
-                            <td>{{$item->is_hot}}</td>
-                            <td>{{$item->is_new}}</td>
-                            <th>{{$item->category_id}}</th>
-                            <th>{{$item->brand_id}}</th>
-                            <th>{{$item->description}}</th>
-                            <th>{{$item->content}}</th>
-                            <th>{{$item->parent_id}}</th>
+                            <td>{{$item->user->name}}</td>
+                            {{-- nếu muốn lấy nhiều sp thì loop đoạn này --}}
+                            <th>{{$item->is_numberphone}}</th>
+                            <th>{{$item->is_address}}</th>
+                            <th>{{$item->orders->product_orders[0]->product['name']}}</th>
+                            {{--
+                                1 cái mảng nó sẽ có nhiều obj nên phần này phải loop
+                                t đang làm mẫu nên t trỏ thẳng tới phần tử đầu tiên, okay, t bị ngu :v chưa hiểu lắm
+                            --}}
+                            {{-- cái [0] này có bắt buộc không?  --}}
+                            <th>{{$item->orders->product_orders[0]->quantity}}</th>
+                            <th>{{$item->orders->product_orders[0]->custom_attr}}</th>
+                            <th>{{$item->orders->product_orders[0]->amount}}</th>
                             <td>
                                 <div class="d-flex">
-                                    <a href="{{ route('product.edit', $item->id) }}" class="text-primary p-1 mr-2">
-                                        <i class="fas fa-edit"></i>
+                                    <a href="#" class="text-primary p-1 mr-2">
+                                        <button class="btn btn-info" type="submit">
+                                            Chi tiết
+                                        </button>
                                     </a>
-                                    <form action="{{route('product.destroy', $item->id)}}" method="post">
+                                    <form action="#" method="post">
                                         @csrf
                                         @method("DELETE")
-                                        <button class="btn btn-warning" type="submit">
+                                        <button class="btn btn btn-primary" type="submit" data-toggle="tooltip"
+                                            title="Xoá">
                                             <i class="fas fa-trash-restore-alt"></i>
                                         </button>
-                                    </form>
-
-                                <form class="pl-2" action="" method="post">
-                                        @csrf
-                                    <input type="hidden" name="parent_id">
-                                        <button class="btn btn-info" type="submit">
-                                        Tạo phiên bản
-                                        </button>
-
                                     </form>
                                 </div>
                             </td>
@@ -93,7 +77,7 @@
 
                     </tbody>
                 </table>
-                {{ $products->links() }}
+                {{-- {{ $products->links() }} --}}
             </div>
         </div>
     </div>

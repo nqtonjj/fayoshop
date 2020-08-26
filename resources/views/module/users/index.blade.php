@@ -36,7 +36,7 @@
                     <tr>
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
-                    <td><img src="uploads/avatar/{{$item->avatar}}"/></td>
+                    <td><img width="100" src="/{{$item->avatar}}"/></td>
                     <td>
                     <div class="d-flex">
                         <a href="{{ route('users.edit', $item->id) }}" class="text-primary p-1 mr-2">

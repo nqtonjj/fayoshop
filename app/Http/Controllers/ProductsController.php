@@ -19,7 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Products::with(['image', 'attributes'])->paginate(10);
+        $products = Products::with(['image', 'attributes', 'category'])->paginate(10);
         return view('module.products.index', ['products' => $products]);
     }
 
@@ -42,8 +42,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $brand = Brand::all();
-        $cate  = Category::all();
+
         $param = $request->post();
         $model = Products::create($param);
         if ($model && $request->has('attributes')) {
@@ -54,7 +53,6 @@ class ProductsController extends Controller
                     $attributes[$key][$fieldKey] = $value;
                 }
             }
-
             foreach ($attributes as $key => $value) {
                 Custom_attributes::create([
                     'products_id' => $model['id'],
@@ -64,7 +62,7 @@ class ProductsController extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with('cate', $cate)->with('brand', $brand);
+        return redirect()->back();
     }
 
     /**

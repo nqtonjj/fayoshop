@@ -13,6 +13,6 @@ class Custom_attrSeed extends Seeder
     public function run()
     {
         //
-        factory(Custom_attributes::class, 15)->create();
+        factory(Custom_attributes::class, 2)->create();
     }
 }

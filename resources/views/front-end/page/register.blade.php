@@ -29,6 +29,11 @@
                         <input type="password" class="form-control" id="inputAddress" placeholder="Nhập password" name="password">
                       </div>
 
+                      <div class="form-group">
+                        <label>Hình đại diện</label>
+                        <input type="file" name="image" class="file-upload-default">
+                    </div>
+
                     <button type="submit" class="btn review_submit_btn">
                         Đăng kí
                       </button>

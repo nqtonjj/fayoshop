@@ -55,13 +55,15 @@
                             <td>{{$item->name}}</td>
                             <td>{{ number_format($item->price, 0, '', ',').__(' VND') }} </td>
                             <td>{{ number_format($item->sale_price, 0, '', ',').__(' VND') }}</td>
-                            <td> <img width="100" src="{{ route('asset.show', $item->image['name']) }}">
+                            <td> <img width="100" height="100" src="{{ route('asset.show', $item->image['name']) }}">
                             </td>
                             <td>{{$item->size}}</td>
                             <td>{{$item->is_hot}}</td>
                             <td>{{$item->is_new}}</td>
-                            <th>{{$item->category_id}}</th>
-                            <th>{{$item->brand_id}}</th>
+                            <th>{{$item->category->name}}</th>
+
+
+                            <th>@if($item->brand_id > 0 && $item->brand){{$item->brand->name }}@endif</th>
                             <th>{{$item->description}}</th>
                             <th>{{$item->content}}</th>
                             <th>{{$item->parent_id}}</th>
@@ -90,7 +92,6 @@
                             </td>
                         </tr>
                         @endforeach
-
                     </tbody>
                 </table>
                 {{ $products->links() }}

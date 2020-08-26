@@ -9,7 +9,7 @@ class Carts extends Model
 {
     //
     protected $fillable = [
-        'user_id', 'orders_id', 'status_transport', 'status_pay', 'total'
+        'user_id', 'orders_id', 'status_transport', 'status_pay', 'total', 'is_address', 'is_numberphone'
     ];
 
     public function user()
@@ -21,4 +21,16 @@ class Carts extends Model
     {
         return $this->belongsTo(Orders::class, 'orders_id');
     }
+
+    public function product_oder()
+    {
+        return $this->belongsTo(Product_orders::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class);
+    }
+
+
 }

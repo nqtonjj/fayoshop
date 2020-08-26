@@ -4,7 +4,7 @@
     <div class="single__banner-img">
         <div class="single__banner-text line">
             <p class="text-line">
-                Áo Pocket
+                Chi tiết Sản Phẩm
             </p>
         </div>
     </div>
@@ -56,6 +56,7 @@
                 <span style="text-decoration: line-through;font-size: 13px">
                     {{number_format($sanpham->sale_price, 0, '', ',').__(' VND')}}
                 </span>
+                <br>
                 <span style="font-size: 16px;color: tomato;">
                     {{number_format($sanpham->price, 0, '', ',').__(' VND')}}
                 </span>
@@ -110,38 +111,53 @@
                         aria-labelledby="v-pills-profile-tab">{{$sanpham->content}}</div>
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                         aria-labelledby="v-pills-messages-tab">
+                        @if (null !== Auth::user())
                         <div class="user_review_container d-flex flex-column flex-sm-row">
                             <div class="user">
-                                <div class="user_pic"></div>
+                                <img class="user_pic" width="100" src="/{{ Auth::user()->avatar }}"/>
                             </div>
                             <div class="review">
-                                <div class="review_date">27 Aug 2020</div>
-                                <div class="user_name">Đỗ Nghĩa</div>
-                                <p>Chất lượng tốt</p>
+                                <div class="user_name" style="margin-top:1.5em">{{ Auth::user()->name }}</div>
                             </div>
                         </div>
                         <div class="add_review">
-                            <form id="review_form" action="post">
+                            <p>Viết nhận xét của bạn</p>
+                        <form id="review_form" method="POST" action="{{route('comment', $sanpham->id)}}">
+                            @csrf
                                 <div>
-                                    <h1>Thêm nhận xét của bạn</h1>
-                                    <input id="review_name" class="form_input input_name" type="text" name="name"
-                                        placeholder="Tên*" required="required" data-error="Name is required.">
-                                    <input id="review_email" class="form_input input_email" type="email" name="email"
-                                        placeholder="Email*" required="required" data-error="Valid email is required.">
-                                </div>
-                                <div>
-                                    <textarea id="review_message" class="input_review" name="message"
+                                    <textarea id="review_message" class="input_review" name="cmt_content"
                                         placeholder="Nhận xét của bạn" rows="4" required
                                         data-error="Please, leave us a review."></textarea>
                                 </div>
                                 <div class="text-left text-sm-right">
                                     <button id="review_submit" type="submit"
-                                        class="red_button review_submit_btn trans_300" value="Submit">Thêm</button>
+                                        class="red_button review_submit_btn trans_300" value="Submit">Gửi</button>
                                 </div>
                             </form>
                         </div>
+
+                        @endif
+                        <ul>
+                            @foreach ($comments as $comment)
+                            <li style="padding:5px">Người dùng: <b>{{ Auth::user()->name }}</b></li>
+                            <li style="padding:5px">
+                                <span>Thời gian:{{date('d/m/Y H:i', strtotime($comment->created_at))}}</span>
+                                <br>
+                                {{$comment->cmt_content}}
+                            </li>
+                            <li style="padding:5px">
+
+                            </li>
+
+                            @endforeach
+                        </ul>
                     </div>
+
                 </div>
+
+            </div>
+            <div>
+
             </div>
         </div>
     </div>

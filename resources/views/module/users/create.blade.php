@@ -30,9 +30,19 @@
             </div>
 
             <div class="form-group">
+                <label for="child-category">Chọn cấp bậc User</label>
+                <select class="form-control" name="category_id">
+                    @foreach ($roles as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Hình đại diện</label>
                 <input type="file" name="image" class="file-upload-default">
             </div>
+
+
 
             <input type="submit" value="Create User" class="btn btn-primary btn-user btn-block">
 

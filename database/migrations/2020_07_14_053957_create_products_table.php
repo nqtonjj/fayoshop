@@ -25,9 +25,9 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('image_id')->unsigned()->index()->nullable()->references('id')->on('images')->onDelete('set null');
             $table->unsignedInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->unsignedInteger('brand_id')->unsigned()->index()->nullable()->references('id')->on('brands')->onDelete('set null');
             $table->string('size');
             $table->integer('parent_id')->default(0);
-            $table->integer('brand_id')->nullable()->default(0);
             $table->timestamps();
         });
     }

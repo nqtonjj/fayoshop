@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\Category;
+use App\Brand;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,6 +13,6 @@ class CategorySeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
-        factory(Category::class, 2)->create();
+        factory(Brand::class, 2)->create();
     }
 }

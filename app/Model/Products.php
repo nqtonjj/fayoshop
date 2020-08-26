@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Brand;
+use App\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
@@ -15,7 +17,7 @@ class Products extends Model
      */
     protected $fillable = [
         'name', 'price', 'sale_price', 'is_new', 'is_hot',
-        'image_id', 'category_id', 'size', 'description', 'content'
+        'image_id', 'category_id', 'size', 'description', 'content', 'brand_id'
     ];
     public function category()
     {
@@ -27,13 +29,19 @@ class Products extends Model
         return $this->belongsTo(Image::class);
     }
 
-    public function brands()
-    {
-        return $this->belongTo(Brand::class);
-    }
+    public function brand()
+{
+  return $this->belongsTo(Brand::class);
+}
 
     public function attributes()
     {
         return $this->hasMany(Custom_attributes::class);
+    }
+
+    public function comments() {
+
+        return $this->hasMany(Comment::class);
+
     }
 }

@@ -6,6 +6,7 @@ use App\Model\Image;
 use App\Model\Category;
 use App\Brand;
 use App\Model\Products;
+use App\Role;
 use App\Slide;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer(['*'], function ($view) {
             $brands = Brand::all();
             $view->with('brands', $brands);
+        });
+
+        view()->composer(['*'], function ($view) {
+            $roles = Role::all();
+            $view->with('roles', $roles);
         });
 
 

@@ -18,7 +18,7 @@ class CreateBrandsTable extends Migration
             $table->string('name')->nullable()->default('');
             $table->integer('priority')->nullable()->default(0);
             $table->unsignedInteger('parent_id')->unsigned()->nullable();
-            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('parent_id')->references('id')->on('brands')->onDelete('set null');
             $table->timestamps();
         });
     }

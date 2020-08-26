@@ -30,9 +30,15 @@ Route::group(['prefix' => '/'], function () {
 
     Route::get('san-pham/{id?}', 'PageController@getproducts')->name('san-pham');
 
+    Route::get('san-pham-thuong-hieu/{id?}', 'PageController@getBrand_products')->name('thuong-hieu');
+
+
     Route::get('detail/{id}', 'PageController@detail')->name('chi-tiet-san-pham');
 
     Route::get('register', 'PageController@register');
+
+    Route::get('gio-hang', 'PageController@getCart')->name('gio-hang');
+    Route::get('thanh-toan', 'PageController@getOrder')->name('thanh-toan');
 
     Route::get('dang-nhap', 'PageController@login')->name('dang-nhap');
     Route::post('dang-nhap', 'PageController@postLogin')->name('dang-nhap');
@@ -64,3 +70,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('images', 'ImageController', ['except' => ['create, edit']]);
 });
+
+
+ // // cart
+ Route::get('carts', 'PageController@indexCart')->name('carts');
+ Route::get('/cart/addcart/{id}', 'PageController@addCart');
+ Route::get('/cart/deleteCart/{id}', 'PageController@delCart');
+ Route::get('/cart/updateCart/{id}', 'PageController@upCart');
+ Route::get('/cart/delete', 'PageController@deleteCart');
+
+ Route::post('/order', 'PageController@creatOrder')->name('order');
+
+ // //End cart
+
+
+//  Comment
+Route::post('comment/{id?}', 'CommentController@postComment')->name('comment');
+
+

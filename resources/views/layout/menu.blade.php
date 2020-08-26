@@ -42,6 +42,12 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href={{ route('brands.index') }}>
+          <i class="fas fa-fw fa-table"></i>
+          <span>Thương Hiệu</span></a>
+      </li>
+
+      <li class="nav-item">
       <a class="nav-link" href="{{route('product.index')}}">
           <i class="fas fa-fw fa-table"></i>
           <span>Sản phẩm</span></a>
@@ -63,9 +69,9 @@
                 <span>Slide</span></a>
             </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('carts')}}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Giỏ hàng</span></a>
+                <span>Cart</span></a>
             </li>
 
 

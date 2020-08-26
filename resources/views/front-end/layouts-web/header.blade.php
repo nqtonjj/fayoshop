@@ -20,9 +20,9 @@
                             </div>
                         </div>
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li class="nav-item dropdown" style="line-height: 13px">
+                            <a style="color: #fff;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Chào
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -96,7 +96,7 @@
                                 <ul class="dropdown">
                                     @foreach ($brands as $item)
                                     <li class="has-children">
-                                        <a href="#">{{$item->name}}</a>
+                                    <a href="{{route('thuong-hieu', $item->id)}}">{{$item->name}}</a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -120,51 +120,62 @@
                     </a>
                     <a class="icons-btn d-inline-block bag">
                         <span onclick="openNav()" class="nav-cart">
-                            <p class="nav_cart--count">
-                                3
+                            @if (!empty(Session::get('cart')))
+                            <p class="nav_cart--count" id="countcart">
+                                {{count(Session::get('cart'))}}
                             </p>
+                            @else
+                            <p class="nav_cart--count" id="countcart">
+                                0
+                            </p>
+                            @endif
+
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </span>
-                        <div id="mySidebar" class="sidebar">
+                        <div id="mySidebar" class="sidebar" >
                             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
                                 X
                             </a>
                             <span>Giỏ Hàng</span>
-                            <div class="list-item">
+                            <div class="list-item" id="showCartHeader">
+                                @if (!empty(Session::get('cart')))
+                                @foreach (Session::get('cart') as $cart)
                                 <div class="item checkout-item border-0">
                                     <div class="cart_image" style=" width:60px;">
-                                        <img src="images/product_4.png" alt="" />
+                                        <img src="{{ $cart['image_id'] }}" alt="" />
                                     </div>
                                     <div class="cart_description cart_description2">
-                                        <span style="font-size: 11px;">Common Projects</span>
-                                        <span style="font-size: 11px;">x 3</span>
-                                        <span style="font-size: 11px;">White</span>
+                                    <span style="font-size: 11px;">{{$cart['name']}}</span>
+                                        <span style="font-size: 11px;">x {{$cart['qty']}}</span>
                                     </div>
                                     <div class="cart_total-price text-right" style="width: 30%;">
                                         <p style="font-size: 14px;">
-                                            150.000 đ
+                                            {{$cart['total']}} đ
                                         </p>
                                     </div>
+
                                 </div>
-                                <div class="item checkout-item border-0">
-                                    <div class="cart_image" style=" width:60px;">
-                                        <img src="images/product_4.png" alt="" />
-                                    </div>
-                                    <div class="cart_description cart_description2">
-                                        <span style="font-size: 11px;">Common Projects</span>
-                                        <span style="font-size: 11px;">x 3</span>
-                                        <span style="font-size: 11px;">White</span>
-                                    </div>
-                                    <div class="cart_total-price text-right" style="width: 30%;">
-                                        <p style="font-size: 14px;">
-                                            11.150.000 đ
-                                        </p>
-                                    </div>
-                                </div>
+                                @endforeach
+
+                            @else
+                            <div class="item checkout-item border-0">
+                              <p>Chưa có sản phẩm nào trong giỏ hàng</p>
                             </div>
-                            <a href="cart.html" class="p-0 d-inline">
+                            @endif
+                            </div>
+                            <a href="/cart/delete" style="font-size:16px">Xoá</a>
+                            <a href="/gio-hang" class="p-0 d-inline">
                                 <button class="btn-hover h-10">Đến giỏ hàng </button>
                             </a>
+                        @guest
+                        <a href="{{route('dang-nhap')}}" class="p-0 d-inline">
+                            <button class="btn-hover h-10">Thanh toán </button>
+                        </a>
+                        @else
+                        <a href="{{route('thanh-toán')}}" class="p-0 d-inline">
+                            <button class="btn-hover h-10">Thanh toán </button>
+                        </a>
+                        @endguest
                         </div>
                     </a>
                 </div>

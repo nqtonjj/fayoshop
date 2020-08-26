@@ -111,7 +111,8 @@
 
 	</div>
 
-	<script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/sort.js"></script>
 	<script src="styles/bootstrap4/popper.js"></script>
 	<script src="styles/bootstrap4/bootstrap.min.js"></script>
 	<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
@@ -123,12 +124,12 @@
 </script> -->
 	<script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 	<script src="{{ asset('front-end/js/custom.js') }}"></script>
-	<script src="{{ asset('front-end/js/OrderCart.js') }}"></script>
+	<script src="{{ asset('front-end/js/Cart.js') }}"></script>
 	<script src="js/custom-swiper.js"></script>
 	<script>
 		function openNav() {
-			document.getElementById("mySidebar").style.width = "250px";
-			document.getElementById("main").style.marginRight = "250px";
+			document.getElementById("mySidebar").style.width = "320px";
+			document.getElementById("main").style.marginRight = "0";
 		}
 
 		function closeNav() {

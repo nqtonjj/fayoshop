@@ -54,7 +54,7 @@
 
                     </tbody>
                 </table>
-                {{ $brands->links() }}
+                {{-- {{ $brands->links() }} --}}
             </div>
         </div>
     </div>
